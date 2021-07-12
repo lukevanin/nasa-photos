@@ -14,6 +14,8 @@
 		FCAE15B5269C28BD00FA4314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCAE15B3269C28BD00FA4314 /* LaunchScreen.storyboard */; };
 		FCAE15C0269C28BD00FA4314 /* NASAPhotosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15BF269C28BD00FA4314 /* NASAPhotosTests.swift */; };
 		FCAE15CB269C28BD00FA4314 /* NASAPhotosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15CA269C28BD00FA4314 /* NASAPhotosUITests.swift */; };
+		FCAE15D9269C370500FA4314 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FCAE15D8269C370500FA4314 /* README.md */; };
+		FCAE15DB269C370B00FA4314 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FCAE15DA269C370B00FA4314 /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		FCAE15C6269C28BD00FA4314 /* NASAPhotosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NASAPhotosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAE15CA269C28BD00FA4314 /* NASAPhotosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotosUITests.swift; sourceTree = "<group>"; };
 		FCAE15CC269C28BD00FA4314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCAE15D8269C370500FA4314 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FCAE15DA269C370B00FA4314 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 		FCAE159C269C28BB00FA4314 = {
 			isa = PBXGroup;
 			children = (
+				FCAE15DA269C370B00FA4314 /* LICENSE */,
+				FCAE15D8269C370500FA4314 /* README.md */,
 				FCAE15A7269C28BB00FA4314 /* NASAPhotos */,
 				FCAE15BE269C28BD00FA4314 /* NASAPhotosTests */,
 				FCAE15C9269C28BD00FA4314 /* NASAPhotosUITests */,
@@ -228,7 +234,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCAE15D9269C370500FA4314 /* README.md in Resources */,
 				FCAE15B5269C28BD00FA4314 /* LaunchScreen.storyboard in Resources */,
+				FCAE15DB269C370B00FA4314 /* LICENSE in Resources */,
 				FCAE15B2269C28BD00FA4314 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
