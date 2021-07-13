@@ -34,6 +34,7 @@ final class PhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationItem()
         setupTableView()
     }
     
@@ -46,6 +47,10 @@ final class PhotosViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeViewModelObservers()
+    }
+    
+    private func setupNavigationItem() {
+        navigationItem.title = "The Milky Way"
     }
     
     // ViewModel

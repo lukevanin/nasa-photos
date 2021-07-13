@@ -40,8 +40,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewController = PhotosViewController(
             viewModel: photosViewModel
         )
+        let navigationController = UINavigationController(
+            rootViewController: viewController
+        )
+        navigationController.navigationBar.prefersLargeTitles = true
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = viewController
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
