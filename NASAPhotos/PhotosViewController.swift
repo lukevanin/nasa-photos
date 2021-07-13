@@ -11,7 +11,11 @@ import Combine
 
 final class PhotosViewController: UIViewController {
     
+    typealias OnSelectItem = (UIViewController, PhotosItemViewModel) -> Void
+    
     private static let photoCellIdentifier = "photo-cell"
+    
+    private var onSelectItem: OnSelectItem?
     
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UITableViewDiffableDataSource<Int, PhotosItemViewModel>?
@@ -19,8 +23,12 @@ final class PhotosViewController: UIViewController {
     private let tableView = UITableView()
     private let viewModel: PhotosViewModelProtocol
     
-    init(viewModel: PhotosViewModelProtocol) {
+    init(
+        viewModel: PhotosViewModelProtocol,
+        onSelectItem: OnSelectItem? = nil
+    ) {
         self.viewModel = viewModel
+        self.onSelectItem = onSelectItem
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,7 +58,7 @@ final class PhotosViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
-        navigationItem.title = "The Milky Way"
+        navigationItem.title = NSLocalizedString("photos-title", comment: "Photos screen title")
     }
     
     // ViewModel
@@ -135,6 +143,7 @@ final class PhotosViewController: UIViewController {
             cellProvider: Self.makeCell
         )
         tableView.dataSource = dataSource
+        tableView.delegate = self
         tableView.estimatedRowHeight = PhotoTableViewCell.estimatedHeight(
             for: UIScreen.main.bounds.width
         )
@@ -167,5 +176,17 @@ final class PhotosViewController: UIViewController {
         cell.thumbnailImageView.url = item.thumbnailImageURL
         cell.titleLabel.text = item.title
         cell.subtitleLabel.text = item.description
+    }
+}
+
+extension PhotosViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let onSelectItem = onSelectItem else {
+            return
+        }
+        guard let item = dataSource?.itemIdentifier(for: indexPath) else {
+            return
+        }
+        onSelectItem(self, item)
     }
 }

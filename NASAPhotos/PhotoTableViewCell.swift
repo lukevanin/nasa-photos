@@ -70,6 +70,9 @@ final class PhotoTableViewCell: UITableViewCell {
                 ),
             ]
         )
-        .add(to: contentView, margins: UIEdgeInsets(horizontal: 0, vertical: 12))
+        .add(
+            to: contentView,
+            margins: UIEdgeInsets(horizontal: 0, vertical: 12)
+        )
     }
 }

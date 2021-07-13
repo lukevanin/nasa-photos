@@ -13,39 +13,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let photosViewModel = MockPhotosViewModel()
-        photosViewModel.mockFetch = {
-            [
-                PhotosItemViewModel(
-                    id: "0",
-                    thumbnailImageURL: URL(string: "https://picsum.photos/id/0/64")!,
-                    title: "ADC-2002-ACD02-0056-22",
-                    description: "Tom Trower | 20 March, 2002"
-                ),
-                PhotosItemViewModel(
-                    id: "1",
-                    thumbnailImageURL: URL(string: "https://picsum.photos/id/1/64")!,
-                    title: "Expedition 22 Prelaunch Press Conference",
-                    description: "NASA/Bill Ingalls | 19 December, 1984"
-                ),
-                PhotosItemViewModel(
-                    id: "2",
-                    thumbnailImageURL: URL(string: "https://picsum.photos/id/2/64")!,
-                    title: "Expedition 22",
-                    description: "NASA/Bill Ingalls | 3 July, 1953"
-                ),
-            ]
+        guard let windowScene = (scene as? UIWindowScene) else {
+            return
         }
-        let viewController = PhotosViewController(
-            viewModel: photosViewModel
-        )
-        let navigationController = UINavigationController(
-            rootViewController: viewController
-        )
-        navigationController.navigationBar.prefersLargeTitles = true
+        let coordinator = TestAppCoordinator()
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = navigationController
+        window?.rootViewController = coordinator.rootViewController
         window?.makeKeyAndVisible()
     }
 
