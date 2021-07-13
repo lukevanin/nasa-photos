@@ -24,9 +24,9 @@ final class TestAppCoordinator {
         let photosViewModel = makeViewModel()
         let viewController = PhotosViewController(
             viewModel: photosViewModel,
-            onSelectItem: { viewController, photo in
+            onSelectItem: { photo in
                 // We are intentionally keeping a strong reference to the
-                // coordinator here so that the instance stays alive.
+                // coordinator to prevent it from be deallocated.
                 self.showPhoto(photo)
             }
         )
@@ -64,6 +64,9 @@ final class TestAppCoordinator {
                 ),
             ]
         }
+//        photosViewModel.mockFetch = {
+//            throw URLError(.badServerResponse)
+//        }
         return photosViewModel
     }
 }

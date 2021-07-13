@@ -16,6 +16,7 @@ final class MockPhotosViewModel: PhotosViewModelProtocol {
     var items = CurrentValueSubject<[PhotosItemViewModel], Never>([])
     var errors = PassthroughSubject<String, Never>()
     
+    var fetchDelay = TimeInterval(1)
     var mockFetch: Fetch!
     
     func reset() {
@@ -23,12 +24,17 @@ final class MockPhotosViewModel: PhotosViewModelProtocol {
     }
     
     func fetch() {
-        do {
-            let newItems =  try mockFetch()
-            items.value.append(contentsOf: newItems)
-        }
-        catch {
-            errors.send(error.localizedDescription)
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + fetchDelay) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            do {
+                let newItems =  try self.mockFetch()
+                self.items.value.append(contentsOf: newItems)
+            }
+            catch {
+                self.errors.send(error.localizedDescription)
+            }
         }
     }
 }

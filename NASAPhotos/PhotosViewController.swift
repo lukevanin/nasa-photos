@@ -81,6 +81,7 @@ final class PhotosViewController: UIViewController {
                     return
                 }
                 self.update(with: items)
+                self.endRefresh()
             }
             .store(in: &cancellables)
         viewModel.errors
@@ -151,10 +152,13 @@ final class PhotosViewController: UIViewController {
         )
         present(viewController, animated: true, completion: nil)
     }
+    
+    // MARK: Table View
+    
+    private func endRefresh() {
+        tableView.refreshControl?.endRefreshing()
+    }
 
-    
-    // Table View
-    
     private func setupTableView() {
         tableView.register(
             PhotoTableViewCell.self,
@@ -174,6 +178,16 @@ final class PhotosViewController: UIViewController {
             vertical: 12
         )
         tableView.separatorStyle = .none
+        tableView.refreshControl = UIRefreshControl(
+            frame: .zero,
+            primaryAction: UIAction() { [weak self] _ in
+                guard let self = self else {
+                    return
+                }
+                self.setNeedsRefresh()
+                self.refreshIfNeeded()
+            }
+        )
     }
     
     private static func makeCell(
