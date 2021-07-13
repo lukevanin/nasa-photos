@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  NASAPhotos
+
+  Created by Luke Van In on 2021/07/13.
+  
+*/
+
+"photos-title" = "The Milky Way";
+
+"error-alert-title" = "Oops, something went wrong!";
+
+"error-alert-retry-button" = "Retry";

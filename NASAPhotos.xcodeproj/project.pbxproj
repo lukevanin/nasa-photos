@@ -10,6 +10,7 @@
 		FC349366269D9C6900531505 /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349365269D9C6900531505 /* URLImageView.swift */; };
 		FC349368269DA6E700531505 /* TestAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349367269DA6E700531505 /* TestAppCoordinator.swift */; };
 		FC34936A269DA91A00531505 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349369269DA91A00531505 /* PhotoViewController.swift */; };
+		FC34936C269DAEDE00531505 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC34936B269DAEDE00531505 /* Localizable.strings */; };
 		FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */; };
 		FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */; };
 		FCAE15AD269C28BB00FA4314 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AC269C28BB00FA4314 /* PhotosViewController.swift */; };
@@ -46,6 +47,7 @@
 		FC349365269D9C6900531505 /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
 		FC349367269DA6E700531505 /* TestAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppCoordinator.swift; sourceTree = "<group>"; };
 		FC349369269DA91A00531505 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		FC34936B269DAEDE00531505 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FCAE15A5269C28BB00FA4314 /* NASAPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASAPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				FCAE15B1269C28BD00FA4314 /* Assets.xcassets */,
 				FCAE15B3269C28BD00FA4314 /* LaunchScreen.storyboard */,
 				FCAE15B6269C28BD00FA4314 /* Info.plist */,
+				FC34936B269DAEDE00531505 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC34936C269DAEDE00531505 /* Localizable.strings in Resources */,
 				FCAE15D9269C370500FA4314 /* README.md in Resources */,
 				FCAE15B5269C28BD00FA4314 /* LaunchScreen.storyboard in Resources */,
 				FCAE15DB269C370B00FA4314 /* LICENSE in Resources */,
