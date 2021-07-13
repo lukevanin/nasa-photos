@@ -19,19 +19,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             [
                 PhotosItemViewModel(
                     id: "0",
-                    thumbnailImageURL: URL(string: "https://picsum.photos/id/100/32/32)")!,
+                    thumbnailImageURL: URL(string: "https://picsum.photos/id/0/64")!,
                     title: "ADC-2002-ACD02-0056-22",
                     description: "Tom Trower | 20 March, 2002"
                 ),
                 PhotosItemViewModel(
                     id: "1",
-                    thumbnailImageURL: URL(string: "https://picsum.photos/id/200/32/32)")!,
+                    thumbnailImageURL: URL(string: "https://picsum.photos/id/1/64")!,
                     title: "Expedition 22 Prelaunch Press Conference",
                     description: "NASA/Bill Ingalls | 19 December, 1984"
                 ),
                 PhotosItemViewModel(
                     id: "2",
-                    thumbnailImageURL: URL(string: "https://picsum.photos/id/300/32/32)")!,
+                    thumbnailImageURL: URL(string: "https://picsum.photos/id/2/64")!,
                     title: "Expedition 22",
                     description: "NASA/Bill Ingalls | 3 July, 1953"
                 ),

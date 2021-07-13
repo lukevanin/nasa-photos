@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC349366269D9C6900531505 /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349365269D9C6900531505 /* URLImageView.swift */; };
 		FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */; };
 		FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */; };
 		FCAE15AD269C28BB00FA4314 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AC269C28BB00FA4314 /* PhotosViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC349365269D9C6900531505 /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
 		FCAE15A5269C28BB00FA4314 /* NASAPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASAPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				FCAE15ED269D6DFF00FA4314 /* PhotoTableViewCell.swift */,
+				FC349365269D9C6900531505 /* URLImageView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */,
 				FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */,
 				FCAE15F0269D8A6800FA4314 /* UIKitExtensions.swift in Sources */,
+				FC349366269D9C6900531505 /* URLImageView.swift in Sources */,
 				FCAE15DD269C5F6700FA4314 /* PhotosViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

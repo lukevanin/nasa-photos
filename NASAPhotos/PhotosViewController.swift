@@ -159,8 +159,7 @@ final class PhotosViewController: UIViewController {
         _ cell: PhotoTableViewCell,
         with item: PhotosItemViewModel
     ) {
-//        let image = UIImage(named: "Placeholder")
-//        cell.thumbnailImageView.image = image
+        cell.thumbnailImageView.url = item.thumbnailImageURL
         cell.titleLabel.text = item.title
         cell.subtitleLabel.text = item.description
     }

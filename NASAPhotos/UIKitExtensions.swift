@@ -23,24 +23,40 @@ extension UIView {
     
     func add(to superview: UIView, margins: UIEdgeInsets? = nil) {
         translatesAutoresizingMaskIntoConstraints = false
+        superview.addSubview(self)
         if let margins = margins {
             superview.layoutMargins = margins
+            NSLayoutConstraint.activate([
+                leftAnchor.constraint(
+                    equalTo: superview.layoutMarginsGuide.leftAnchor
+                ),
+                rightAnchor.constraint(
+                    equalTo: superview.layoutMarginsGuide.rightAnchor
+                ),
+                topAnchor.constraint(
+                    equalTo: superview.layoutMarginsGuide.topAnchor
+                ),
+                bottomAnchor.constraint(
+                    equalTo: superview.layoutMarginsGuide.bottomAnchor
+                ),
+            ])
         }
-        superview.addSubview(self)
-        NSLayoutConstraint.activate([
-            leftAnchor.constraint(
-                equalTo: superview.layoutMarginsGuide.leftAnchor
-            ),
-            rightAnchor.constraint(
-                equalTo: superview.layoutMarginsGuide.rightAnchor
-            ),
-            topAnchor.constraint(
-                equalTo: superview.layoutMarginsGuide.topAnchor
-            ),
-            bottomAnchor.constraint(
-                equalTo: superview.layoutMarginsGuide.bottomAnchor
-            ),
-        ])
+        else {
+            NSLayoutConstraint.activate([
+                leftAnchor.constraint(
+                    equalTo: superview.leftAnchor
+                ),
+                rightAnchor.constraint(
+                    equalTo: superview.rightAnchor
+                ),
+                topAnchor.constraint(
+                    equalTo: superview.topAnchor
+                ),
+                bottomAnchor.constraint(
+                    equalTo: superview.bottomAnchor
+                ),
+            ])
+        }
     }
     
     func with(widthEqualToConstant constant: CGFloat) -> Self {

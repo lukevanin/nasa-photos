@@ -10,8 +10,8 @@ import UIKit
 
 final class PhotoTableViewCell: UITableViewCell {
     
-    let thumbnailImageView: UIImageView = {
-        let view = UIImageView()
+    let thumbnailImageView: URLImageView = {
+        let view = URLImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = 3
@@ -21,7 +21,7 @@ final class PhotoTableViewCell: UITableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-//        let font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        #warning("TODO: Refactor fonts to use a shared repository")
         let font = UIFont(name: "HelveticaNeue-Bold", size: 17)!
         label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
         label.adjustsFontForContentSizeCategory = true
@@ -33,9 +33,8 @@ final class PhotoTableViewCell: UITableViewCell {
     
     let subtitleLabel: UILabel = {
         let label = UILabel()
-        let weight = UIFont.Weight(0.4)
+        #warning("TODO: Refactor fonts to use a shared repository")
         let font = UIFont(name: "HelveticaNeue", size: 14)!
-//        let font = UIFont.systemFont(ofSize: 14, weight: .thin)
         label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
         label.adjustsFontForContentSizeCategory = true
         label.textColor = .secondaryLabel
@@ -53,7 +52,7 @@ final class PhotoTableViewCell: UITableViewCell {
     }
     
     private func setupLayout() {
-        #warning("TODO: Insert spacing above subtitle")
+        #warning("TODO: Insert spacing between title and subtitle")
         UIStackView(
             axis: .horizontal,
             spacing: 16,
