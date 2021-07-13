@@ -11,14 +11,15 @@ import Combine
 
 final class PhotosViewController: UIViewController {
     
-    typealias OnSelectItem = (UIViewController, PhotosItemViewModel) -> Void
-    
+    typealias OnSelectItem = (PhotosItemViewModel) -> Void
+
     private static let photoCellIdentifier = "photo-cell"
     
     private var onSelectItem: OnSelectItem?
     
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UITableViewDiffableDataSource<Int, PhotosItemViewModel>?
+    private var refreshNeeded = false
     
     private let tableView = UITableView()
     private let viewModel: PhotosViewModelProtocol
@@ -44,12 +45,21 @@ final class PhotosViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationItem()
         setupTableView()
+        setNeedsRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addViewModelObservers()
-        reload()
+        refreshIfNeeded()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.flashScrollIndicators()
+        tableView.indexPathsForSelectedRows?.forEach {
+            tableView.deselectRow(at: $0, animated: true)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -88,8 +98,20 @@ final class PhotosViewController: UIViewController {
         cancellables.removeAll()
     }
     
-    private func reload() {
+    private func setNeedsRefresh() {
+        refreshNeeded = true
+    }
+    
+    private func refreshIfNeeded() {
+        guard refreshNeeded == true else {
+            return
+        }
+        refreshNeeded = false
         viewModel.reset()
+        viewModel.fetch()
+    }
+     
+    private func retry() {
         viewModel.fetch()
     }
     
@@ -110,7 +132,6 @@ final class PhotosViewController: UIViewController {
     }
     
     private func presentError(_ message: String) {
-        #warning("TODO: Delegate presenting the error alert")
         let viewController = UIAlertController(
             title: NSLocalizedString("error-alert-title", comment: "Error alert title"),
             message: message,
@@ -124,12 +145,13 @@ final class PhotosViewController: UIViewController {
                     guard let self = self else {
                         return
                     }
-                    #warning("TODO: Call fetch on the view model again")
+                    self.retry()
                 }
             )
         )
         present(viewController, animated: true, completion: nil)
     }
+
     
     // Table View
     
@@ -187,6 +209,6 @@ extension PhotosViewController: UITableViewDelegate {
         guard let item = dataSource?.itemIdentifier(for: indexPath) else {
             return
         }
-        onSelectItem(self, item)
+        onSelectItem(item)
     }
 }
