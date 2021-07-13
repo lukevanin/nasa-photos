@@ -14,7 +14,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let viewController = ViewController()
+        let photosViewModel = MockPhotosViewModel()
+        photosViewModel.mockFetch = {
+            [
+                PhotosItemViewModel(
+                    id: "0",
+                    thumbnailImageURL: URL(string: "https://picsum.photos/id/100/32/32)")!,
+                    title: "ADC-2002-ACD02-0056-22",
+                    description: "Tom Trower | 20 March, 2002"
+                ),
+                PhotosItemViewModel(
+                    id: "1",
+                    thumbnailImageURL: URL(string: "https://picsum.photos/id/200/32/32)")!,
+                    title: "Expedition 22 Prelaunch Press Conference",
+                    description: "NASA/Bill Ingalls | 19 December, 1984"
+                ),
+                PhotosItemViewModel(
+                    id: "2",
+                    thumbnailImageURL: URL(string: "https://picsum.photos/id/300/32/32)")!,
+                    title: "Expedition 22",
+                    description: "NASA/Bill Ingalls | 3 July, 1953"
+                ),
+            ]
+        }
+        let viewController = PhotosViewController(
+            viewModel: photosViewModel
+        )
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()

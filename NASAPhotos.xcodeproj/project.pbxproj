@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */; };
 		FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */; };
-		FCAE15AD269C28BB00FA4314 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AC269C28BB00FA4314 /* ViewController.swift */; };
+		FCAE15AD269C28BB00FA4314 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AC269C28BB00FA4314 /* PhotosViewController.swift */; };
 		FCAE15B2269C28BD00FA4314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCAE15B1269C28BD00FA4314 /* Assets.xcassets */; };
 		FCAE15B5269C28BD00FA4314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCAE15B3269C28BD00FA4314 /* LaunchScreen.storyboard */; };
 		FCAE15C0269C28BD00FA4314 /* NASAPhotosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15BF269C28BD00FA4314 /* NASAPhotosTests.swift */; };
 		FCAE15CB269C28BD00FA4314 /* NASAPhotosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15CA269C28BD00FA4314 /* NASAPhotosUITests.swift */; };
 		FCAE15D9269C370500FA4314 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FCAE15D8269C370500FA4314 /* README.md */; };
 		FCAE15DB269C370B00FA4314 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FCAE15DA269C370B00FA4314 /* LICENSE */; };
+		FCAE15DD269C5F6700FA4314 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15DC269C5F6700FA4314 /* PhotosViewModel.swift */; };
+		FCAE15E8269C65F200FA4314 /* MockPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15E7269C65F200FA4314 /* MockPhotosViewModel.swift */; };
+		FCAE15EE269D6DFF00FA4314 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15ED269D6DFF00FA4314 /* PhotoTableViewCell.swift */; };
+		FCAE15F0269D8A6800FA4314 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15EF269D8A6800FA4314 /* UIKitExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +43,7 @@
 		FCAE15A5269C28BB00FA4314 /* NASAPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASAPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FCAE15AC269C28BB00FA4314 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FCAE15AC269C28BB00FA4314 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		FCAE15B1269C28BD00FA4314 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FCAE15B4269C28BD00FA4314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FCAE15B6269C28BD00FA4314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +55,10 @@
 		FCAE15CC269C28BD00FA4314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCAE15D8269C370500FA4314 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FCAE15DA269C370B00FA4314 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		FCAE15DC269C5F6700FA4314 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
+		FCAE15E7269C65F200FA4314 /* MockPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotosViewModel.swift; sourceTree = "<group>"; };
+		FCAE15ED269D6DFF00FA4314 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		FCAE15EF269D8A6800FA4314 /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +111,13 @@
 		FCAE15A7269C28BB00FA4314 /* NASAPhotos */ = {
 			isa = PBXGroup;
 			children = (
-				FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */,
-				FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */,
-				FCAE15AC269C28BB00FA4314 /* ViewController.swift */,
-				FCAE15B1269C28BD00FA4314 /* Assets.xcassets */,
-				FCAE15B3269C28BD00FA4314 /* LaunchScreen.storyboard */,
-				FCAE15B6269C28BD00FA4314 /* Info.plist */,
+				FCAE15E3269C65A900FA4314 /* Apps */,
+				FCAE15EC269D6DF000FA4314 /* Views */,
+				FCAE15E4269C65BF00FA4314 /* View Controllers */,
+				FCAE15E5269C65CA00FA4314 /* View Models */,
+				FCAE15E6269C65DC00FA4314 /* Mocks */,
+				FCAE15F1269D8A6E00FA4314 /* Helpers */,
+				FCAE15E2269C658600FA4314 /* Resources */,
 			);
 			path = NASAPhotos;
 			sourceTree = "<group>";
@@ -129,6 +138,65 @@
 				FCAE15CC269C28BD00FA4314 /* Info.plist */,
 			);
 			path = NASAPhotosUITests;
+			sourceTree = "<group>";
+		};
+		FCAE15E2269C658600FA4314 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE15B1269C28BD00FA4314 /* Assets.xcassets */,
+				FCAE15B3269C28BD00FA4314 /* LaunchScreen.storyboard */,
+				FCAE15B6269C28BD00FA4314 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FCAE15E3269C65A900FA4314 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */,
+				FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */,
+			);
+			name = Apps;
+			sourceTree = "<group>";
+		};
+		FCAE15E4269C65BF00FA4314 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE15AC269C28BB00FA4314 /* PhotosViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FCAE15E5269C65CA00FA4314 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE15DC269C5F6700FA4314 /* PhotosViewModel.swift */,
+			);
+			name = "View Models";
+			sourceTree = "<group>";
+		};
+		FCAE15E6269C65DC00FA4314 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE15E7269C65F200FA4314 /* MockPhotosViewModel.swift */,
+			);
+			name = Mocks;
+			sourceTree = "<group>";
+		};
+		FCAE15EC269D6DF000FA4314 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE15ED269D6DFF00FA4314 /* PhotoTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FCAE15F1269D8A6E00FA4314 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE15EF269D8A6800FA4314 /* UIKitExtensions.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +330,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCAE15AD269C28BB00FA4314 /* ViewController.swift in Sources */,
+				FCAE15EE269D6DFF00FA4314 /* PhotoTableViewCell.swift in Sources */,
+				FCAE15E8269C65F200FA4314 /* MockPhotosViewModel.swift in Sources */,
+				FCAE15AD269C28BB00FA4314 /* PhotosViewController.swift in Sources */,
 				FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */,
 				FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */,
+				FCAE15F0269D8A6800FA4314 /* UIKitExtensions.swift in Sources */,
+				FCAE15DD269C5F6700FA4314 /* PhotosViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
