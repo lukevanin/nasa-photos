@@ -56,6 +56,7 @@ final class URLImageView: UIView {
     }
 
     private func setupLayout() {
+        backgroundColor = .systemGray5
         imageView.added(to: self, relativeTo: .edges)
     }
     

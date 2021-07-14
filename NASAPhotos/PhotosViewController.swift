@@ -209,9 +209,9 @@ final class PhotosViewController: UIViewController {
         _ cell: PhotoTableViewCell,
         with item: PhotosItemViewModel
     ) {
-        cell.thumbnailImageView.url = item.thumbnailImageURL
-        cell.titleLabel.text = item.title
-        cell.subtitleLabel.text = item.description
+        cell.imageURL = item.thumbnailImageURL
+        cell.title = item.title
+        cell.subtitle = item.description
     }
 }
 

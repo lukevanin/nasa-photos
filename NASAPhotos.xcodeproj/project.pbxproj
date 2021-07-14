@@ -12,6 +12,9 @@
 		FC34936A269DA91A00531505 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349369269DA91A00531505 /* PhotoViewController.swift */; };
 		FC34936C269DAEDE00531505 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC34936B269DAEDE00531505 /* Localizable.strings */; };
 		FC349370269EA8DA00531505 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34936F269EA8DA00531505 /* PhotoViewModel.swift */; };
+		FC349372269ECF0700531505 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349371269ECF0700531505 /* TitleLabel.swift */; };
+		FC349374269ED03C00531505 /* SubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349373269ED03C00531505 /* SubtitleLabel.swift */; };
+		FC349376269ED10300531505 /* PhotoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349375269ED10300531505 /* PhotoInfoView.swift */; };
 		FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */; };
 		FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */; };
 		FCAE15AD269C28BB00FA4314 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AC269C28BB00FA4314 /* PhotosViewController.swift */; };
@@ -50,6 +53,9 @@
 		FC349369269DA91A00531505 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		FC34936B269DAEDE00531505 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FC34936F269EA8DA00531505 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		FC349371269ECF0700531505 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
+		FC349373269ED03C00531505 /* SubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleLabel.swift; sourceTree = "<group>"; };
+		FC349375269ED10300531505 /* PhotoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoView.swift; sourceTree = "<group>"; };
 		FCAE15A5269C28BB00FA4314 /* NASAPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASAPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,7 +206,10 @@
 		FCAE15EC269D6DF000FA4314 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FC349371269ECF0700531505 /* TitleLabel.swift */,
+				FC349373269ED03C00531505 /* SubtitleLabel.swift */,
 				FCAE15ED269D6DFF00FA4314 /* PhotoTableViewCell.swift */,
+				FC349375269ED10300531505 /* PhotoInfoView.swift */,
 				FC349365269D9C6900531505 /* URLImageView.swift */,
 			);
 			name = Views;
@@ -348,13 +357,16 @@
 			files = (
 				FCAE15EE269D6DFF00FA4314 /* PhotoTableViewCell.swift in Sources */,
 				FC349370269EA8DA00531505 /* PhotoViewModel.swift in Sources */,
+				FC349376269ED10300531505 /* PhotoInfoView.swift in Sources */,
 				FCAE15E8269C65F200FA4314 /* MockPhotosViewModel.swift in Sources */,
 				FCAE15AD269C28BB00FA4314 /* PhotosViewController.swift in Sources */,
 				FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */,
 				FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */,
 				FCAE15F0269D8A6800FA4314 /* UIKitExtensions.swift in Sources */,
 				FC349368269DA6E700531505 /* TestAppCoordinator.swift in Sources */,
+				FC349374269ED03C00531505 /* SubtitleLabel.swift in Sources */,
 				FC349366269D9C6900531505 /* URLImageView.swift in Sources */,
+				FC349372269ECF0700531505 /* TitleLabel.swift in Sources */,
 				FCAE15DD269C5F6700FA4314 /* PhotosViewModel.swift in Sources */,
 				FC34936A269DA91A00531505 /* PhotoViewController.swift in Sources */,
 			);

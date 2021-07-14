@@ -10,36 +10,44 @@ import UIKit
 
 final class PhotoTableViewCell: UITableViewCell {
     
-    let thumbnailImageView: URLImageView = {
+    var title: String? {
+        get {
+            infoView.title
+        }
+        set {
+            infoView.title = newValue
+        }
+    }
+    
+    var subtitle: String? {
+        get {
+            infoView.title
+        }
+        set {
+            infoView.title = newValue
+        }
+    }
+    
+    var imageURL: URL? {
+        get {
+            thumbnailImageView.url
+        }
+        set {
+            thumbnailImageView.url = newValue
+        }
+    }
+
+    private let thumbnailImageView: URLImageView = {
         let view = URLImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = 3
-        view.backgroundColor = .systemGray5
         return view
     }()
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        #warning("TODO: Refactor fonts to use a shared repository")
-        let font = UIFont(name: "HelveticaNeue-Bold", size: 16)!
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
-        label.adjustsFontForContentSizeCategory = true
-        label.textColor = .label
-        label.numberOfLines = 2
-        label.text = "Ag"
-        return label
-    }()
-    
-    let subtitleLabel: UILabel = {
-        let label = UILabel()
-        #warning("TODO: Refactor fonts to use a shared repository")
-        let font = UIFont(name: "HelveticaNeue", size: 14)!
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
-        label.adjustsFontForContentSizeCategory = true
-        label.textColor = .secondaryLabel
-        label.text = "Ag"
-        return label
+    private let infoView: PhotoInfoView = {
+        let view = PhotoInfoView()
+        return view
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -61,13 +69,7 @@ final class PhotoTableViewCell: UITableViewCell {
                 thumbnailImageView
                     .with(widthEqualTo: 64)
                     .with(aspectRatioEqualTo: 1.0),
-                UIStackView(
-                    axis: .vertical,
-                    arrangedSubviews: [
-                        titleLabel,
-                        subtitleLabel,
-                    ]
-                ),
+                infoView,
             ]
         )
         .added(

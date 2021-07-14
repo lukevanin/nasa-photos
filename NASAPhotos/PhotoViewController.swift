@@ -20,24 +20,15 @@ final class PhotoViewController: UIViewController {
     }()
     
     private let titleLabel: UILabel = {
-        let label = UILabel()
-        #warning("TODO: Refactor fonts to use a shared repository")
-        let font = UIFont(name: "HelveticaNeue-Bold", size: 16)!
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
-        label.adjustsFontForContentSizeCategory = true
-        label.textColor = .label
-        label.numberOfLines = 2
+        let label = TitleLabel()
+        label.numberOfLines = 0
         label.text = "Ag"
         return label
     }()
     
     let subtitleLabel: UILabel = {
-        let label = UILabel()
-        #warning("TODO: Refactor fonts to use a shared repository")
-        let font = UIFont(name: "HelveticaNeue", size: 14)!
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
-        label.adjustsFontForContentSizeCategory = true
-        label.textColor = .secondaryLabel
+        let label = SubtitleLabel()
+        label.numberOfLines = 1
         label.text = "Ag"
         return label
     }()

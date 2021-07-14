@@ -61,26 +61,25 @@ final class TestAppCoordinator {
             id: "0",
             title: "ADC-2002-ACD02-0056-22",
             description: "Tom Trower | 20 March, 2002",
-            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configruations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long."
+            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long."
         ),
         Photo(
             id: "1",
             title: "Expedition 22 Prelaunch Press Conference",
             description: "NASA/Bill Ingalls | 19 December, 1984",
-            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configruations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long."
+            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long."
         ),
         Photo(
             id: "2",
             title: "Expedition 22",
             description: "NASA/Bill Ingalls | 3 July, 1953",
-            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configruations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long."
+            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long."
         ),
     ]
     
     private(set) var rootViewController: UINavigationController!
     
     init() {
-//        let viewController = makePhotosViewController()
         let viewController = makePhotoViewController(
             with: PhotoInfoViewModel(photos[0])
         )
