@@ -22,7 +22,7 @@ final class PhotoTableViewCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         #warning("TODO: Refactor fonts to use a shared repository")
-        let font = UIFont(name: "HelveticaNeue-Bold", size: 17)!
+        let font = UIFont(name: "HelveticaNeue-Bold", size: 16)!
         label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
         label.adjustsFontForContentSizeCategory = true
         label.textColor = .label
@@ -59,8 +59,8 @@ final class PhotoTableViewCell: UITableViewCell {
             alignment: .top,
             arrangedSubviews: [
                 thumbnailImageView
-                    .with(widthEqualToConstant: 64)
-                    .with(aspectRatio: 1),
+                    .with(widthEqualTo: 64)
+                    .with(aspectRatioEqualTo: 1.0),
                 UIStackView(
                     axis: .vertical,
                     arrangedSubviews: [
@@ -70,9 +70,8 @@ final class PhotoTableViewCell: UITableViewCell {
                 ),
             ]
         )
-        .add(
-            to: contentView,
-            margins: UIEdgeInsets(horizontal: 0, vertical: 12)
+        .added(
+            to: contentView.with(layoutMargins: UIEdgeInsets(vertical: 12))
         )
     }
 }

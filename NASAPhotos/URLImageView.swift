@@ -56,7 +56,7 @@ final class URLImageView: UIView {
     }
 
     private func setupLayout() {
-        imageView.add(to: self)
+        imageView.added(to: self, relativeTo: .edges)
     }
     
     private func invalidateImage() {

@@ -10,6 +10,13 @@ demonstrates some useful concepts:
 - Building reactive applications using Combine Publisher
 
 
+## Project
+
+### Code Style
+
+Code is formatted to fit to a 80 character margin. 
+Default Xcode settings are used for indentation and formatting - lines are indented using 4 spaces.
+
 
 ## Requirements
 
@@ -154,6 +161,7 @@ The data would be provided by a Service, by calling the specific method for fetc
 
 Data Transfer Objects are used by Services and Repositories to serialize and deserialize content to and from a data format.
 
+[TODO] Discuss using Redux.
 
 ### PhotoTableViewCell
 
