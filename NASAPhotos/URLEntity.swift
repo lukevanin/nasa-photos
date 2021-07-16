@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct WrappedURL  {
+struct WrappedURLEntity  {
     let url: URL
 }
 
-extension WrappedURL: Equatable {
+extension WrappedURLEntity: Equatable {
     
 }
 
-extension WrappedURL: Decodable {
+extension WrappedURLEntity: Decodable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

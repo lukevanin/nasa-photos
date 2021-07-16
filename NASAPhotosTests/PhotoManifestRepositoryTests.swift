@@ -20,7 +20,7 @@ final class PhotoManifestRepositoryTests: XCTestCase {
         let service = MockCodableGetService() { url in
             XCTAssertEqual(url, manifestURL)
             return [
-                WrappedURL(
+                WrappedURLEntity(
                     url: URL(string: "https://example.org/0~thumb.jpg")!
                 )
             ]

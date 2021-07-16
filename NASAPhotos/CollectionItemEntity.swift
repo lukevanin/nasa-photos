@@ -10,8 +10,8 @@ import Foundation
 
 struct CollectionItem<Item> {
     let data: [Item]
-    let links: [LinkEntity<WrappedURL>]
-    let href: WrappedURL
+    let links: [LinkEntity<WrappedURLEntity>]
+    let href: WrappedURLEntity
 }
 
 extension CollectionItem: Equatable where Item: Equatable {

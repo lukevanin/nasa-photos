@@ -26,7 +26,7 @@ final class CollectionRepositoryTests: XCTestCase {
                     )
                 ],
                 links: [],
-                href: WrappedURL(url: url)
+                href: WrappedURLEntity(url: url)
             )
         ]
         let service = MockCodableGetService() { _ in
@@ -57,7 +57,7 @@ final class CollectionRepositoryTests: XCTestCase {
                     )
                 ],
                 links: [],
-                href: WrappedURL(
+                href: WrappedURLEntity(
                     url: URL(string: "http://example.org/photo")!
                 )
             )
