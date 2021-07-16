@@ -9,6 +9,8 @@ import UIKit
 import Combine
 
 
+#warning("TODO: Show loading indicator")
+
 final class PhotosViewController: UIViewController {
     
     typealias OnSelectItem = (PhotosItemViewModel) -> Void
@@ -171,6 +173,7 @@ final class PhotosViewController: UIViewController {
         )
         tableView.dataSource = dataSource
         tableView.delegate = self
+        tableView.prefetchDataSource = self
         tableView.estimatedRowHeight = PhotoTableViewCell.estimatedHeight(
             for: UIScreen.main.bounds.width
         )
@@ -225,5 +228,17 @@ extension PhotosViewController: UITableViewDelegate {
             return
         }
         onSelectItem(item)
+    }
+}
+
+extension PhotosViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        let lastIndex = tableView.numberOfRows(inSection: 0) - 1
+        let lastIndexPath = IndexPath(item: lastIndex, section: 0)
+        if indexPaths.contains(lastIndexPath) {
+            print(lastIndexPath, indexPaths)
+            viewModel.fetch()
+        }
     }
 }

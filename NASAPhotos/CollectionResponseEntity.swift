@@ -17,16 +17,7 @@ struct WrappedURL: Equatable, Decodable {
         let safeString = unsafeString.addingPercentEncoding(
             withAllowedCharacters: .urlPathAllowed.union(.urlHostAllowed)
         )!
-        guard var components = URLComponents(string: safeString) else {
-            throw DecodingError.dataCorruptedError(
-                in: container,
-                debugDescription: "Invalid URL string: \(unsafeString)"
-            )
-        }
-        if components.scheme == "http" {
-            components.scheme = "https"
-        }
-        guard let url = components.url else {
+        guard let url = URL(string: safeString) else {
             throw DecodingError.dataCorruptedError(
                 in: container,
                 debugDescription: "Invalid URL string: \(unsafeString)"
@@ -43,6 +34,7 @@ typealias MediaAssetManifestEntity = [WrappedURL]
 enum LinkRelation: String {
     case preview
     case next
+    case prev
     case captions
 }
 
@@ -51,16 +43,16 @@ extension LinkRelation: Decodable {
 }
 
 
-struct LinkEntity {
-    let href: WrappedURL
+struct LinkEntity<URL> {
+    let href: URL
     let rel: LinkRelation
 }
 
-extension LinkEntity: Equatable {
+extension LinkEntity: Equatable where URL: Equatable {
     
 }
 
-extension LinkEntity: Decodable {
+extension LinkEntity: Decodable where URL: Decodable {
     
 }
 
@@ -90,7 +82,7 @@ extension PhotoEntity: Decodable {
 
 struct CollectionItem<Item> {
     let data: [Item]
-    let links: [LinkEntity]
+    let links: [LinkEntity<WrappedURL>]
     let href: WrappedURL
 }
 
@@ -102,7 +94,7 @@ extension CollectionItem: Decodable where Item: Decodable {
 struct CollectionEntity<Item> {
     
     let items: [CollectionItem<Item>]
-    let links: [LinkEntity]
+    let links: [LinkEntity<URL>]
 }
 
 extension CollectionEntity: Decodable where Item: Decodable {

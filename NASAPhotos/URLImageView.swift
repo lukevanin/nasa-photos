@@ -81,7 +81,7 @@ final class URLImageView: UIView {
             return
         }
         imageCancellable = session
-            .dataTaskPublisher(for: url)
+            .dataTaskPublisher(for: url.usingHTTPS())
             .receive(on: queue)
             .map { (data, _) -> UIImage? in
                 UIImage(data: data, scale: 1.0)

@@ -69,7 +69,7 @@ final class PhotosRepository: CursorProtocol {
                 PhotosRepository(
                     photos: response.collection.items,
                     nextURL: response.collection.nextLink().flatMap {
-                        $0.href.url
+                        $0.href
                     },
                     service: service
                 )

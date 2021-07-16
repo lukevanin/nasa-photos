@@ -36,7 +36,7 @@ extension CollectionEntity {
     ///
     /// Returns a link to retrieve the next subset of the collection.
     ///
-    func nextLink() -> LinkEntity? {
+    func nextLink() -> LinkEntity<URL>? {
         links.first { $0.rel == .next }
     }
 }

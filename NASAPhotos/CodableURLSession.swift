@@ -21,12 +21,11 @@ final class CodableHTTPGetService<Decoder>: CodableGetService where Decoder: Top
     
     func get<T>(_ type: T.Type, url: URL) -> AnyPublisher<T, Error> where T : Decodable {
         session
-            .dataTaskPublisher(for: url)
+            .dataTaskPublisher(for: url.usingHTTPS())
             .map { data, _ in
                 data
             }
             .decode(type: T.self, decoder: decoder)
-//            .breakpointOnError()
             .eraseToAnyPublisher()
     }
 }

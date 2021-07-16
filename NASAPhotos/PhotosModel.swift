@@ -329,6 +329,7 @@ final class PhotosModel {
     func reset() {
         currentState?.cancel()
         setState(NextPendingModelState(cursor: initialCursor))
+        photos.send([])
     }
     
     // MARK: Internal methods

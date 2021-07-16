@@ -8,8 +8,8 @@
 
 "photos-title" = "The Milky Way";
 
+"photos-error-alert-title" = "Oops, something went wrong!";
+
+"photos-error-alert-retry-button" = "Retry";
+
 "photo-title" = "The Milky Way";
-
-"error-alert-title" = "Oops, something went wrong!";
-
-"error-alert-retry-button" = "Retry";
