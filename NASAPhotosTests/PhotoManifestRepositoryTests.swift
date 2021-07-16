@@ -33,11 +33,6 @@ final class PhotoManifestRepositoryTests: XCTestCase {
     
     func testFetchShouldReturnErrorWhenServiceReturnsError() {
         let manifestURL = URL(string: "https://example.org/manifest")!
-        let expected = PhotoManifest(
-            assets: [
-                .thumbnail: URL(string: "https://example.org/0~thumb.jpg")!
-            ]
-        )
         let service = MockCodableGetService() { url in
             XCTAssertEqual(url, manifestURL)
             throw(URLError(.badServerResponse))
