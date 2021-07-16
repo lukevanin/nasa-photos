@@ -37,9 +37,7 @@ final class AppCoordinator {
             url: baseURL,
             service: getService
         )
-        let photoBuilder = PhotoBuilder(
-            service: getService
-        )
+        let photoBuilder = PhotoBuilder()
         let photosModel = PagedCollectionModel<PhotoEntity, Photo>(
             cursor: AnyCursor(repository),
             transform: photoBuilder.makePhoto

@@ -16,10 +16,20 @@ protocol PhotoManifestRepositoryProtocol {
 
 final class PhotoManifestRepository: PhotoManifestRepositoryProtocol {
     
-    private let service: CodableGetService
+    typealias Transform = ([URL]) -> PhotoManifest
     
-    init(service: CodableGetService) {
+    private let service: CodableGetService
+    private let transform: Transform
+    
+    init(
+        service: CodableGetService,
+        transform: @escaping Transform = {
+            let builder = PhotoManifestBuilder()
+            return builder.makePhotoManifest
+        }()
+    ) {
         self.service = service
+        self.transform = transform
     }
     
     func fetchManifest(for url: URL) -> AnyPublisher<PhotoManifest, Error> {
@@ -28,8 +38,8 @@ final class PhotoManifestRepository: PhotoManifestRepositoryProtocol {
             .map { manifest in
                 manifest.map { $0.url }
             }
-            .map { urls in
-                PhotoManifest(urls: urls)
+            .map { [transform] urls in
+                transform(urls)
             }
             .eraseToAnyPublisher()
     }

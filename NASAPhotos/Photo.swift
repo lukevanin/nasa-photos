@@ -11,14 +11,7 @@ import Foundation
 ///
 ///
 ///
-final class PhotoBuilder {
-    
-    private let service: CodableGetService
-    
-    init(service: CodableGetService) {
-        self.service = service
-    }
-    
+struct PhotoBuilder {
     func makePhoto(for entity: CollectionItem<PhotoEntity>) -> Photo? {
         guard let item = entity.data.first else {
             return nil
