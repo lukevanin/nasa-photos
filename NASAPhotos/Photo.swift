@@ -34,7 +34,7 @@ struct PhotoBuilder {
 ///
 ///
 ///
-struct Photo {
+struct Photo: Identifiable {
     var id: String
     var title: String?
     var dateCreated: Date?
@@ -42,4 +42,8 @@ struct Photo {
     var details: String?
     var thumbnailImageURL: URL?
     var manifestURL: URL?
+}
+
+extension Photo: Equatable {
+    
 }

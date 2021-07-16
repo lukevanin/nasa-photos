@@ -1,5 +1,5 @@
 //
-//  Helpers.swift
+//  XCTestCaseExtensions.swift
 //  NASAPhotosTests
 //
 //  Created by Luke Van In on 2021/07/16.

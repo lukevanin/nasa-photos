@@ -35,12 +35,14 @@
 		FC3493C326A1AB9F00531505 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C226A1AB9F00531505 /* Photo.swift */; };
 		FC3493C726A1AFE300531505 /* PhotoManifestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C626A1AFE300531505 /* PhotoManifestRepository.swift */; };
 		FC3493C926A1B25800531505 /* CollectionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C826A1B25800531505 /* CollectionRepositoryTests.swift */; };
-		FC3493CB26A1B68300531505 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493CA26A1B68300531505 /* Helpers.swift */; };
+		FC3493CB26A1B68300531505 /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493CA26A1B68300531505 /* XCTestCaseExtensions.swift */; };
 		FC3493CD26A1B8D500531505 /* MockCodableGetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493CC26A1B8D500531505 /* MockCodableGetService.swift */; };
 		FC3493CF26A1E40600531505 /* PhotoManifestRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493CE26A1E40600531505 /* PhotoManifestRepositoryTests.swift */; };
 		FC3493D126A1E72D00531505 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D026A1E72D00531505 /* URLTests.swift */; };
 		FC3493D326A1E85700531505 /* WrappedURLEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D226A1E85700531505 /* WrappedURLEntityTests.swift */; };
 		FC3493D526A1ECC900531505 /* PhotoManifestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D426A1ECC900531505 /* PhotoManifestBuilderTests.swift */; };
+		FC3493D726A1F09700531505 /* PagedCollectionModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D626A1F09700531505 /* PagedCollectionModelTests.swift */; };
+		FC3493DE26A1F11800531505 /* PhotoBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493DD26A1F11800531505 /* PhotoBuilderTests.swift */; };
 		FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */; };
 		FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */; };
 		FCAE15AD269C28BB00FA4314 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AC269C28BB00FA4314 /* PhotosViewController.swift */; };
@@ -101,12 +103,14 @@
 		FC3493C226A1AB9F00531505 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		FC3493C626A1AFE300531505 /* PhotoManifestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifestRepository.swift; sourceTree = "<group>"; };
 		FC3493C826A1B25800531505 /* CollectionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRepositoryTests.swift; sourceTree = "<group>"; };
-		FC3493CA26A1B68300531505 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		FC3493CA26A1B68300531505 /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
 		FC3493CC26A1B8D500531505 /* MockCodableGetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCodableGetService.swift; sourceTree = "<group>"; };
 		FC3493CE26A1E40600531505 /* PhotoManifestRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifestRepositoryTests.swift; sourceTree = "<group>"; };
 		FC3493D026A1E72D00531505 /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		FC3493D226A1E85700531505 /* WrappedURLEntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedURLEntityTests.swift; sourceTree = "<group>"; };
 		FC3493D426A1ECC900531505 /* PhotoManifestBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifestBuilderTests.swift; sourceTree = "<group>"; };
+		FC3493D626A1F09700531505 /* PagedCollectionModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedCollectionModelTests.swift; sourceTree = "<group>"; };
+		FC3493DD26A1F11800531505 /* PhotoBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBuilderTests.swift; sourceTree = "<group>"; };
 		FCAE15A5269C28BB00FA4314 /* NASAPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASAPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +201,49 @@
 			name = Entities;
 			sourceTree = "<group>";
 		};
+		FC3493D826A1F0A100531505 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FC3493D626A1F09700531505 /* PagedCollectionModelTests.swift */,
+				FC3493DD26A1F11800531505 /* PhotoBuilderTests.swift */,
+				FC3493D426A1ECC900531505 /* PhotoManifestBuilderTests.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FC3493D926A1F0B300531505 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				FC3493C826A1B25800531505 /* CollectionRepositoryTests.swift */,
+				FC3493CE26A1E40600531505 /* PhotoManifestRepositoryTests.swift */,
+			);
+			name = Repositories;
+			sourceTree = "<group>";
+		};
+		FC3493DA26A1F0C300531505 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				FC3493D226A1E85700531505 /* WrappedURLEntityTests.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		FC3493DB26A1F0CC00531505 /* Helper Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FC3493D026A1E72D00531505 /* URLTests.swift */,
+			);
+			name = "Helper Tests";
+			sourceTree = "<group>";
+		};
+		FC3493DC26A1F0E400531505 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FC3493CA26A1B68300531505 /* XCTestCaseExtensions.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		FCAE159C269C28BB00FA4314 = {
 			isa = PBXGroup;
 			children = (
@@ -240,12 +287,11 @@
 		FCAE15BE269C28BD00FA4314 /* NASAPhotosTests */ = {
 			isa = PBXGroup;
 			children = (
-				FC3493D426A1ECC900531505 /* PhotoManifestBuilderTests.swift */,
-				FC3493C826A1B25800531505 /* CollectionRepositoryTests.swift */,
-				FC3493CE26A1E40600531505 /* PhotoManifestRepositoryTests.swift */,
-				FC3493D226A1E85700531505 /* WrappedURLEntityTests.swift */,
-				FC3493D026A1E72D00531505 /* URLTests.swift */,
-				FC3493CA26A1B68300531505 /* Helpers.swift */,
+				FC3493D826A1F0A100531505 /* Models */,
+				FC3493D926A1F0B300531505 /* Repositories */,
+				FC3493DA26A1F0C300531505 /* Entities */,
+				FC3493DB26A1F0CC00531505 /* Helper Tests */,
+				FC3493DC26A1F0E400531505 /* Helpers */,
 				FCAE15C1269C28BD00FA4314 /* Info.plist */,
 			);
 			path = NASAPhotosTests;
@@ -505,9 +551,11 @@
 			files = (
 				FC3493D326A1E85700531505 /* WrappedURLEntityTests.swift in Sources */,
 				FC3493CF26A1E40600531505 /* PhotoManifestRepositoryTests.swift in Sources */,
+				FC3493D726A1F09700531505 /* PagedCollectionModelTests.swift in Sources */,
 				FC3493D126A1E72D00531505 /* URLTests.swift in Sources */,
-				FC3493CB26A1B68300531505 /* Helpers.swift in Sources */,
+				FC3493CB26A1B68300531505 /* XCTestCaseExtensions.swift in Sources */,
 				FC3493C926A1B25800531505 /* CollectionRepositoryTests.swift in Sources */,
+				FC3493DE26A1F11800531505 /* PhotoBuilderTests.swift in Sources */,
 				FC3493D526A1ECC900531505 /* PhotoManifestBuilderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

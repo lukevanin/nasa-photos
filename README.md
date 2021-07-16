@@ -18,6 +18,7 @@ FIXME: Images sometimes do not appear.
 TODO: Use colour assets.
 TODO: Use replaceable theme for UI.
 TODO: Document API issues: Invalid URLs, documentation and API mismatch for manifest, HTTP URLs.
+TODO: Document use of WrappedURL instead of explicit decoder
 
 
 ## Project
