@@ -62,7 +62,24 @@ final class URLImageView: UIView {
     
     private func invalidateImage() {
         dispatchPrecondition(condition: .onQueue(.main))
-        imageView.image = loadedImage ?? placeholderImage
+        #warning("TODO: Animate image transition")
+        let newImage = loadedImage ?? placeholderImage
+        if newImage != nil {
+            UIView.transition(
+                with: imageView,
+                duration: 0.2,
+                options: [.transitionCrossDissolve],
+                animations: {
+                    self.imageView.image = newImage
+                },
+                completion: nil
+            )
+        }
+        else {
+            UIView.performWithoutAnimation {
+                imageView.image = newImage
+            }
+        }
     }
     
     private func invalidateURL() {

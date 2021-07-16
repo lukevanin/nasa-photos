@@ -14,6 +14,7 @@ TODO: Document use of recieve completion instead of using assign.
 TODO: Document cursor design.
 TODO: Document entities.
 TODO: Document assumption using TLS.
+TODO: Images sometimes do not appear.
 
 
 ## Project

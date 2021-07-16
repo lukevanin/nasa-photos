@@ -19,18 +19,9 @@ final class PhotoViewController: UIViewController {
         return view
     }()
     
-    private let titleLabel: UILabel = {
-        let label = TitleLabel()
-        label.numberOfLines = 0
-        label.text = "Ag"
-        return label
-    }()
-    
-    let subtitleLabel: UILabel = {
-        let label = SubtitleLabel()
-        label.numberOfLines = 1
-        label.text = "Ag"
-        return label
+    private let infoView: PhotoInfoView = {
+        let view = PhotoInfoView()
+        return view
     }()
     
     private let bodyLabel: UILabel = {
@@ -70,13 +61,7 @@ final class PhotoViewController: UIViewController {
                         axis: .vertical,
                         spacing: 24,
                         arrangedSubviews: [
-                            UIStackView(
-                                axis: .vertical,
-                                arrangedSubviews: [
-                                    titleLabel,
-                                    subtitleLabel,
-                                ]
-                            ),
+                            infoView,
                             bodyLabel,
                         ]
                     )
@@ -162,8 +147,8 @@ final class PhotoViewController: UIViewController {
     // MARK: View
 
     private func updateView(with photo: PhotoInfoViewModel) {
-        titleLabel.text = photo.title
-        subtitleLabel.text = photo.description
+        infoView.title = photo.title
+        infoView.subtitle = photo.description
         bodyLabel.text = photo.details
     }
     

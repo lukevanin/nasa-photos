@@ -13,3 +13,9 @@
 "photos-error-alert-retry-button" = "Retry";
 
 "photo-title" = "The Milky Way";
+
+"photo-error-alert-title" = "Oops, something went wrong!";
+
+"photo-error-alert-retry-button" = "Retry";
+
+"photo-error-alert-cancel-button" = "Cancel";

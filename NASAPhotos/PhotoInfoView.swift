@@ -37,7 +37,7 @@ final class PhotoInfoView: UIView {
     
     private let subtitleLabel: UILabel = {
         let label = SubtitleLabel()
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         label.text = "Ag"
         return label
     }()
