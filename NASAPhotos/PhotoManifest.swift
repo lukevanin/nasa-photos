@@ -21,6 +21,10 @@ struct PhotoManifest {
     let assets: [Variant : URL]
 }
 
+extension PhotoManifest: Equatable {
+    
+}
+
 extension PhotoManifest {
     private static let variantNames: [String : Variant] = [
         "small": .small,
