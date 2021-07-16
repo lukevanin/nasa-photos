@@ -1,5 +1,5 @@
 //
-//  TestAppCoordinator.swift
+//  AppCoordinator.swift
 //  NASAPhotos
 //
 //  Created by Luke Van In on 2021/07/13.
@@ -9,47 +9,8 @@ import UIKit
 import Combine
 
 
-final class TestAppCoordinator {
-    
-//    var photos = [
-//        Photo(
-//            id: "0",
-//            title: "ADC-2002-ACD02-0056-22",
-//            dateCreated: Date(timeIntervalSince1970: -14196536),
-//            photographer: "Tom Trower",
-//            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long.",
-//            images: [
-//                .thumbnail: URL(string: "https://picsum.photos/id/0/64")!,
-//                .medium: URL(string: "https://picsum.photos/id/0/375/230")!,
-//                .original: URL(string: "https://picsum.photos/id/0/800/600")!,
-//            ]
-//        ),
-//        Photo(
-//            id: "1",
-//            title: "Expedition 22 Prelaunch Press Conference",
-//            dateCreated: Date(timeIntervalSince1970: -14196536),
-//            photographer: "NASA/Bill Ingalls",
-//            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long.",
-//            images: [
-//                .thumbnail: URL(string: "https://picsum.photos/id/1/64")!,
-//                .medium: URL(string: "https://picsum.photos/id/1/375/230")!,
-//                .original: URL(string: "https://picsum.photos/id/1/800/600")!,
-//            ]
-//        ),
-//        Photo(
-//            id: "2",
-//            title: "Expedition 22",
-//            dateCreated: Date(timeIntervalSince1970: -14196536),
-//            photographer: "NASA/Bill Ingalls",
-//            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long.",
-//            images: [
-//                .thumbnail: URL(string: "https://picsum.photos/id/2/64")!,
-//                .medium: URL(string: "https://picsum.photos/id/2/375/230")!,
-//                .original: URL(string: "https://picsum.photos/id/2/800/600")!,
-//            ]
-//        ),
-//    ]
-    
+final class AppCoordinator {
+
     private var cancellables = Set<AnyCancellable>()
     
     private let photoDescription: PhotoDescriptionBuilder
@@ -60,9 +21,7 @@ final class TestAppCoordinator {
     private(set) var rootViewController: UINavigationController!
     
     init() {
-//        let viewController = makePhotoViewController(
-//            with: makePhotoInfoViewModel(photos[0])
-//        )
+        #warning("TODO: Compose query URL in the model")
         let baseURL = URL(string: "https://images-api.nasa.gov/search?q=%22%22")!
         let decoder: JSONDecoder = {
             let decoder = JSONDecoder()
@@ -74,7 +33,7 @@ final class TestAppCoordinator {
             session: .shared,
             decoder: decoder
         )
-        let repository = PhotosRepository(
+        let repository = CollectionRepository<PhotoEntity>(
             url: baseURL,
             service: getService
         )
@@ -88,6 +47,7 @@ final class TestAppCoordinator {
         let photoDescription = PhotoDescriptionBuilder(
             dateFormatter: {
                 let formatter = DateFormatter()
+                #warning("TODO: Use localizable string for date format")
                 formatter.dateFormat = "dd MMM, YYYY"
                 return formatter
             }()

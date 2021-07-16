@@ -62,7 +62,7 @@ final class URLImageView: UIView {
     
     private func invalidateImage() {
         dispatchPrecondition(condition: .onQueue(.main))
-        #warning("TODO: Animate image transition")
+        #warning("TODO: Show loading indicator when the image is nil and the url is not nil")
         let newImage = loadedImage ?? placeholderImage
         if newImage != nil {
             UIView.transition(

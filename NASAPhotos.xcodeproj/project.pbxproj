@@ -16,7 +16,7 @@
 		FC349374269ED03C00531505 /* SubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349373269ED03C00531505 /* SubtitleLabel.swift */; };
 		FC349376269ED10300531505 /* PhotoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349375269ED10300531505 /* PhotoInfoView.swift */; };
 		FC34937A269EEDB200531505 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349379269EEDB200531505 /* PhotosModel.swift */; };
-		FC34937D269EEF6400531505 /* PhotosRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34937C269EEF6400531505 /* PhotosRepository.swift */; };
+		FC34937D269EEF6400531505 /* CollectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34937C269EEF6400531505 /* CollectionRepository.swift */; };
 		FC349381269F129F00531505 /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349380269F129F00531505 /* Cursor.swift */; };
 		FC349383269F206600531505 /* CodableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349382269F206600531505 /* CodableService.swift */; };
 		FC349386269F24AE00531505 /* CollectionResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349385269F24AE00531505 /* CollectionResponseEntity.swift */; };
@@ -66,7 +66,7 @@
 		FC349373269ED03C00531505 /* SubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleLabel.swift; sourceTree = "<group>"; };
 		FC349375269ED10300531505 /* PhotoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoView.swift; sourceTree = "<group>"; };
 		FC349379269EEDB200531505 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
-		FC34937C269EEF6400531505 /* PhotosRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRepository.swift; sourceTree = "<group>"; };
+		FC34937C269EEF6400531505 /* CollectionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRepository.swift; sourceTree = "<group>"; };
 		FC349380269F129F00531505 /* Cursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cursor.swift; sourceTree = "<group>"; };
 		FC349382269F206600531505 /* CodableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableService.swift; sourceTree = "<group>"; };
 		FC349385269F24AE00531505 /* CollectionResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionResponseEntity.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		FC34937B269EEE8400531505 /* Repostitories */ = {
 			isa = PBXGroup;
 			children = (
-				FC34937C269EEF6400531505 /* PhotosRepository.swift */,
+				FC34937C269EEF6400531505 /* CollectionRepository.swift */,
 			);
 			name = Repostitories;
 			sourceTree = "<group>";
@@ -426,7 +426,7 @@
 				FC3493AD26A18A6C00531505 /* PhotoModel.swift in Sources */,
 				FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */,
 				FCAE15F0269D8A6800FA4314 /* UIKitExtensions.swift in Sources */,
-				FC34937D269EEF6400531505 /* PhotosRepository.swift in Sources */,
+				FC34937D269EEF6400531505 /* CollectionRepository.swift in Sources */,
 				FC349368269DA6E700531505 /* TestAppCoordinator.swift in Sources */,
 				FC349374269ED03C00531505 /* SubtitleLabel.swift in Sources */,
 				FC349383269F206600531505 /* CodableService.swift in Sources */,

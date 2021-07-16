@@ -23,6 +23,17 @@ final class PhotosViewController: UIViewController {
     private var dataSource: UITableViewDiffableDataSource<Int, PhotosItemViewModel>?
     private var refreshNeeded = false
     
+    private let loadingIndicatorView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .large)
+        view.autoresizingMask = [
+            .flexibleTopMargin,
+            .flexibleRightMargin,
+            .flexibleBottomMargin,
+            .flexibleLeftMargin,
+        ]
+        view.hidesWhenStopped = true
+        return view
+    }()
     private let tableView = UITableView()
     private let viewModel: PhotosViewModelProtocol
     
@@ -125,6 +136,16 @@ final class PhotosViewController: UIViewController {
             animatingDifferences: true,
             completion: nil
         )
+        if items.count == 0 {
+            if loadingIndicatorView.isHidden == true {
+                loadingIndicatorView.startAnimating()
+            }
+        }
+        else {
+            if loadingIndicatorView.isHidden == false {
+                loadingIndicatorView.stopAnimating()
+            }
+        }
     }
     
     private func makeSnapshot(for items: [PhotosItemViewModel]) -> NSDiffableDataSourceSnapshot<Int, PhotosItemViewModel> {
@@ -192,6 +213,17 @@ final class PhotosViewController: UIViewController {
                 self.refreshIfNeeded()
             }
         )
+        tableView.backgroundView = {
+            let frame = tableView.bounds
+            loadingIndicatorView.center = CGPoint(
+                x: frame.midX,
+                y: frame.midY
+            )
+            let view = UIView(frame: frame)
+            view.autoresizesSubviews = true
+            view.addSubview(loadingIndicatorView)
+            return view
+        }()
     }
     
     private static func makeCell(
