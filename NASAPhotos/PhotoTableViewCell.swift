@@ -21,10 +21,10 @@ final class PhotoTableViewCell: UITableViewCell {
     
     var subtitle: String? {
         get {
-            infoView.title
+            infoView.subtitle
         }
         set {
-            infoView.title = newValue
+            infoView.subtitle = newValue
         }
     }
     

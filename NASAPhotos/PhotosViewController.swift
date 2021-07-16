@@ -133,14 +133,15 @@ final class PhotosViewController: UIViewController {
     }
     
     private func presentError(_ message: String) {
+        #warning("TODO: Refactor error into coordinator, called from the view model")
         let viewController = UIAlertController(
-            title: NSLocalizedString("error-alert-title", comment: "Error alert title"),
+            title: NSLocalizedString("photos-error-alert-title", comment: "Error alert title"),
             message: message,
             preferredStyle: .alert
         )
         viewController.addAction(
             UIAlertAction(
-                title: NSLocalizedString("error-alert-retry-button", comment: "Error alert retry button caption"),
+                title: NSLocalizedString("photos-error-alert-retry-button", comment: "Error alert retry button caption"),
                 style: .default,
                 handler: { [weak self] _ in
                     guard let self = self else {

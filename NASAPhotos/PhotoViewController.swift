@@ -44,9 +44,12 @@ final class PhotoViewController: UIViewController {
         return label
     }()
 
-    private let viewModel: PhotoInfoViewModel?
-    
-    init(viewModel: PhotoInfoViewModel) {
+    private var refreshNeeded = false
+    private var cancellables = Set<AnyCancellable>()
+
+    private let viewModel: PhotoViewModel
+
+    init(viewModel: PhotoViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -87,11 +90,18 @@ final class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItem()
+        setNeedsRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupView()
+        addViewModelObservers()
+        refreshIfNeeded()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeViewModelObservers()
     }
     
     private func setupNavigationItem() {
@@ -99,10 +109,95 @@ final class PhotoViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
     }
     
-    private func setupView() {
-        photoImageView.url = viewModel?.previewImageURL
-        titleLabel.text = viewModel?.title
-        subtitleLabel.text = viewModel?.description
-        bodyLabel.text = viewModel?.details
+    // MARK: View Model
+     
+    private func setNeedsRefresh() {
+        refreshNeeded = true
     }
+    
+    private func refreshIfNeeded() {
+        guard refreshNeeded == true else {
+            return
+        }
+        refreshNeeded = false
+        viewModel.reload()
+    }
+
+    private func addViewModelObservers() {
+        viewModel.photo
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] photo in
+                guard let self = self else {
+                    return
+                }
+                self.updateView(with: photo)
+            }
+            .store(in: &cancellables)
+        
+        viewModel.previewImageURL
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] imageURL in
+                guard let self = self else {
+                    return
+                }
+                self.updateImage(with: imageURL)
+            }
+            .store(in: &cancellables)
+        
+        viewModel.error
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] error in
+                guard let self = self else {
+                    return
+                }
+                self.showError(message: error)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func removeViewModelObservers() {
+        cancellables.removeAll()
+    }
+    
+    // MARK: View
+
+    private func updateView(with photo: PhotoInfoViewModel) {
+        titleLabel.text = photo.title
+        subtitleLabel.text = photo.description
+        bodyLabel.text = photo.details
+    }
+    
+    private func updateImage(with url: URL) {
+        photoImageView.url = url
+    }
+    
+    private func showError(message: String) {
+        let viewController = UIAlertController(
+            title: NSLocalizedString("photo-error-alert-title", comment: "Error alert title"),
+            message: message,
+            preferredStyle: .alert
+        )
+        viewController.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("photo-error-alert-retry-button", comment: "Error alert retry button caption"),
+                style: .default,
+                handler: { [weak self] _ in
+                    guard let self = self else {
+                        return
+                    }
+                    self.setNeedsRefresh()
+                    self.refreshIfNeeded()
+                }
+            )
+        )
+        viewController.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("photo-error-alert-cancel-button", comment: "Error alert retry button caption"),
+                style: .default,
+                handler: nil
+            )
+        )
+        present(viewController, animated: true, completion: nil)
+    }
+
 }

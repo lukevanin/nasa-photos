@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 
 ///
@@ -15,12 +16,6 @@ struct PhotoInfoViewModel: Identifiable {
     
     /// Unique identifier of the item.
     let id: String
-    
-    /// URL of the preview image.
-    var previewImageURL: URL
-    
-    /// URL of the original image.
-    var originalImageURL: URL
 
     /// Text title of the photo.
     var title: String
@@ -30,4 +25,44 @@ struct PhotoInfoViewModel: Identifiable {
     
     /// Detailed information about the photo.
     var details: String
+}
+
+
+struct PhotoViewModel {
+    
+    typealias TransformPhoto = (Photo) -> PhotoInfoViewModel
+    
+    let photo: AnyPublisher<PhotoInfoViewModel, Never>
+    let previewImageURL: AnyPublisher<URL, Never>
+    let error: AnyPublisher<String, Never>
+
+    private let model: PhotoDetailsModel
+    
+    init(
+        model: PhotoDetailsModel,
+        preferredPreviewImageVariants: [PhotoManifest.Variant] = [
+            .small,
+            .medium,
+            .original,
+            .thumbnail,
+        ],
+        transformPhoto: @escaping TransformPhoto
+    ) {
+        self.model = model
+        self.photo = model.photo
+            .map(transformPhoto)
+            .eraseToAnyPublisher()
+        self.previewImageURL = model.manifest
+            .compactMap { manifest in
+                manifest?.firstURL(matching: preferredPreviewImageVariants)
+            }
+            .eraseToAnyPublisher()
+        self.error = model.error
+            .map { $0.localizedDescription }
+            .eraseToAnyPublisher()
+    }
+    
+    func reload() {
+        model.reload()
+    }
 }

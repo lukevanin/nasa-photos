@@ -21,10 +21,10 @@ final class PhotoInfoView: UIView {
     
     var subtitle: String? {
         get {
-            titleLabel.text
+            subtitleLabel.text
         }
         set {
-            titleLabel.text = newValue
+            subtitleLabel.text = newValue
         }
     }
 
@@ -60,6 +60,6 @@ final class PhotoInfoView: UIView {
                 subtitleLabel
                     .padding(UIEdgeInsets(vertical: 4))
             ])
-            .added(to: self)
+            .added(to: self, relativeTo: .edges)
     }
 }

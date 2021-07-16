@@ -76,10 +76,10 @@ final class URLImageView: UIView {
     }
     
     private func loadImage() {
+        loadedImage = nil
         guard let url = url else {
             return
         }
-        loadedImage = nil
         imageCancellable = session
             .dataTaskPublisher(for: url)
             .receive(on: queue)

@@ -6,83 +6,96 @@
 //
 
 import UIKit
-
-
-struct Photo {
-    var id: String
-    var title: String
-    var description: String
-    var details: String
-    
-    var thumbnailImageURL: URL {
-        URL(string: "https://picsum.photos/id/\(id)/64")!
-    }
-    
-    var previewImageURL: URL {
-        URL(string: "https://picsum.photos/id/\(id)/375/230")!
-    }
-    
-    var originalImageURL: URL {
-        URL(string: "https://picsum.photos/id/\(id)/800/600")!
-    }
-}
-
-
-extension PhotosItemViewModel {
-    init(_ photo: Photo) {
-        self.init(
-            id: photo.id,
-            thumbnailImageURL: photo.thumbnailImageURL,
-            title: photo.title,
-            description: photo.description
-        )
-    }
-}
-
-
-extension PhotoInfoViewModel {
-    init(_ photo: Photo) {
-        self.init(
-            id: photo.id,
-            previewImageURL: photo.previewImageURL,
-            originalImageURL: photo.originalImageURL,
-            title: photo.title,
-            description: photo.description,
-            details: photo.details
-        )
-    }
-}
+import Combine
 
 
 final class TestAppCoordinator {
     
-    var photos = [
-        Photo(
-            id: "0",
-            title: "ADC-2002-ACD02-0056-22",
-            description: "Tom Trower | 20 March, 2002",
-            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long."
-        ),
-        Photo(
-            id: "1",
-            title: "Expedition 22 Prelaunch Press Conference",
-            description: "NASA/Bill Ingalls | 19 December, 1984",
-            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long."
-        ),
-        Photo(
-            id: "2",
-            title: "Expedition 22",
-            description: "NASA/Bill Ingalls | 3 July, 1953",
-            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long."
-        ),
-    ]
+//    var photos = [
+//        Photo(
+//            id: "0",
+//            title: "ADC-2002-ACD02-0056-22",
+//            dateCreated: Date(timeIntervalSince1970: -14196536),
+//            photographer: "Tom Trower",
+//            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long.",
+//            images: [
+//                .thumbnail: URL(string: "https://picsum.photos/id/0/64")!,
+//                .medium: URL(string: "https://picsum.photos/id/0/375/230")!,
+//                .original: URL(string: "https://picsum.photos/id/0/800/600")!,
+//            ]
+//        ),
+//        Photo(
+//            id: "1",
+//            title: "Expedition 22 Prelaunch Press Conference",
+//            dateCreated: Date(timeIntervalSince1970: -14196536),
+//            photographer: "NASA/Bill Ingalls",
+//            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long.",
+//            images: [
+//                .thumbnail: URL(string: "https://picsum.photos/id/1/64")!,
+//                .medium: URL(string: "https://picsum.photos/id/1/375/230")!,
+//                .original: URL(string: "https://picsum.photos/id/1/800/600")!,
+//            ]
+//        ),
+//        Photo(
+//            id: "2",
+//            title: "Expedition 22",
+//            dateCreated: Date(timeIntervalSince1970: -14196536),
+//            photographer: "NASA/Bill Ingalls",
+//            details: "VSHAIP test in 7x10ft#1 W.T. (multiple model configurations) V-22 helicopter shipboard aerodynamic interaction program: L-R seated Allen Wadcox, (standind) Mark Betzina, seated in front of computer Gloria Yamauchi, in background Kurt Long.",
+//            images: [
+//                .thumbnail: URL(string: "https://picsum.photos/id/2/64")!,
+//                .medium: URL(string: "https://picsum.photos/id/2/375/230")!,
+//                .original: URL(string: "https://picsum.photos/id/2/800/600")!,
+//            ]
+//        ),
+//    ]
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    private let photoDescription: PhotoDescriptionBuilder
+    
+    private let getService: CodableGetService
+    private let photosModel: PhotosModel
     
     private(set) var rootViewController: UINavigationController!
     
     init() {
-        let viewController = makePhotoViewController(
-            with: PhotoInfoViewModel(photos[0])
+//        let viewController = makePhotoViewController(
+//            with: makePhotoInfoViewModel(photos[0])
+//        )
+        let baseURL = URL(string: "https://images-api.nasa.gov/search?q=%22%22")!
+        let decoder: JSONDecoder = {
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            decoder.dateDecodingStrategy = .iso8601
+            return decoder
+        }()
+        let getService = CodableHTTPGetService(
+            session: .shared,
+            decoder: decoder
         )
+        let repository = PhotosRepository(
+            url: baseURL,
+            service: getService
+        )
+        let photoBuilder = PhotoBuilder(
+            service: getService
+        )
+        let photosModel = PhotosModel(
+            cursor: AnyCursor(repository),
+            transform: photoBuilder.makePhoto
+        )
+        let photoDescription = PhotoDescriptionBuilder(
+            dateFormatter: {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "dd MMM, YYYY"
+                return formatter
+            }()
+        )
+        self.getService = getService
+        self.photoDescription = photoDescription
+        self.photosModel = photosModel
+        let viewController = makePhotosViewController()
         rootViewController = UINavigationController(
             rootViewController: viewController
         )
@@ -90,7 +103,7 @@ final class TestAppCoordinator {
     }
     
     private func makePhotosViewController() -> UIViewController {
-        let photosViewModel = makeViewModel()
+        let photosViewModel = makePhotosViewModel()
         let viewController = PhotosViewController(
             viewModel: photosViewModel,
             onSelectItem: { photo in
@@ -103,33 +116,57 @@ final class TestAppCoordinator {
     }
     
     private func showPhoto(_ photo: PhotosItemViewModel) {
-        guard let photo = photos.first(where: { $0.id == photo.id }) else {
+        guard let photo = photosModel.photos.value.first(where: { $0.id == photo.id }) else {
             return
         }
-        let info = PhotoInfoViewModel(photo)
-        showPhoto(info)
+        showPhoto(photo)
     }
     
-    private func showPhoto(_ photo: PhotoInfoViewModel) {
+    private func showPhoto(_ photo: Photo) {
         let viewController = makePhotoViewController(with: photo)
         rootViewController.pushViewController(viewController, animated: true)
     }
     
     private func makePhotoViewController(
-        with photo: PhotoInfoViewModel
+        with photo: Photo
     ) -> PhotoViewController {
-        let viewController = PhotoViewController(viewModel: photo)
+        let model = PhotoDetailsModel(
+            photo: photo,
+            service: getService
+        )
+        let viewModel = PhotoViewModel(
+            model: model,
+            transformPhoto: makePhotoInfoViewModel
+        )
+        let viewController = PhotoViewController(
+            viewModel: viewModel
+        )
         return viewController
     }
     
-    private func makeViewModel() -> PhotosViewModelProtocol {
-        let photosViewModel = MockPhotosViewModel()
-        photosViewModel.mockFetch = { [photos] in
-            photos.map(PhotosItemViewModel.init)
-        }
-//        photosViewModel.mockFetch = {
-//            throw URLError(.badServerResponse)
-//        }
-        return photosViewModel
+    private func makePhotosViewModel() -> PhotosViewModelProtocol {
+        return PhotosViewModel(
+            model: photosModel,
+            transform: makePhotosItemViewModel
+        )
     }
+    
+    func makePhotosItemViewModel(with photo: Photo) -> PhotosItemViewModel {
+        PhotosItemViewModel(
+            id: photo.id,
+            thumbnailImageURL: photo.thumbnailImageURL,
+            title: photo.title ?? "",
+            description: photoDescription.makePhotoDescription(for: photo)
+        )
+    }
+
+    func makePhotoInfoViewModel(with photo: Photo) -> PhotoInfoViewModel {
+        PhotoInfoViewModel(
+            id: photo.id,
+            title: photo.title ?? "",
+            description: photoDescription.makePhotoDescription(for: photo),
+            details: photo.details ?? ""
+        )
+    }
+
 }

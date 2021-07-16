@@ -10,6 +10,11 @@ demonstrates some useful concepts:
 - Building reactive applications using Combine Publisher
 
 
+TODO: Document use of recieve completion instead of using assign.
+TODO: Document cursor design.
+TODO: Document entities.
+
+
 ## Project
 
 ### Code Style
