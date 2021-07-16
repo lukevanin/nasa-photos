@@ -16,7 +16,7 @@ final class AppCoordinator {
     private let photoDescription: PhotoDescriptionBuilder
     
     private let getService: CodableGetService
-    private let photosModel: PagedCollectionModel<PhotoEntity, Photo>
+    private let photosModel: PagedCollectionModel<CollectionItem<PhotoEntity>, Photo>
     
     private(set) var rootViewController: UINavigationController!
     
@@ -38,8 +38,8 @@ final class AppCoordinator {
             service: getService
         )
         let photoBuilder = PhotoBuilder()
-        let photosModel = PagedCollectionModel<PhotoEntity, Photo>(
-            cursor: AnyCursor(repository),
+        let photosModel = PagedCollectionModel<CollectionItem<PhotoEntity>, Photo>(
+            cursor: repository.eraseToAnyCursor(),
             transform: photoBuilder.makePhoto
         )
         let photoDescription = PhotoDescriptionBuilder(

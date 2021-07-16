@@ -58,7 +58,7 @@ protocol PhotosViewModelProtocol {
 
 final class PhotosViewModel: PhotosViewModelProtocol {
     
-    typealias Model = PagedCollectionModel<PhotoEntity, Photo>
+    typealias Model = PagedCollectionModel<CollectionItem<PhotoEntity>, Photo>
     typealias Transform = (Photo) -> PhotosItemViewModel
     
     var items = CurrentValueSubject<[PhotosItemViewModel], Never>([])

@@ -23,7 +23,7 @@ extension XCTestCase {
     ) throws -> P.Output where P: Publisher {
         var output: Result<P.Output, P.Failure>?
         let expectation = expectation(description: description ?? "publisher")
-        publisher
+        let cancellable = publisher
             .sink(
                 receiveCompletion: { completion in
                     switch completion {
@@ -39,8 +39,10 @@ extension XCTestCase {
                     expectation.fulfill()
                 }
             )
-            .store(in: &cancellables)
+        cancellables.insert(cancellable)
         wait(for: [expectation], timeout: timeout)
+        cancellables.remove(cancellable)
+        cancellable.cancel()
         guard let result = output else {
             throw XCTestError(.failureWhileWaiting)
         }

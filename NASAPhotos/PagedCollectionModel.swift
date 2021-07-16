@@ -15,12 +15,12 @@ import Combine
 /// Transforms input items into output items.
 /// Aggregates (combines together) separates batches of items into a single collection containing all of the items.
 ///
-final class PagedCollectionModel<Entity, Element> {
+final class PagedCollectionModel<Input, Output> {
     
-    typealias Cursor = AnyCursor<[CollectionItem<Entity>]>
-    typealias Transform = (CollectionItem<Entity>) -> Element?
+    typealias Cursor = AnyCursor<[Input]>
+    typealias Transform = (Input) -> Output?
     
-    let elements = CurrentValueSubject<[Element], Never>([])
+    let elements = CurrentValueSubject<[Output], Never>([])
     let errors = PassthroughSubject<Error, Never>()
     
     private var currentState: AnyModelState?
@@ -60,7 +60,7 @@ final class PagedCollectionModel<Entity, Element> {
     
     // MARK: Internal methods
     
-    private func append(_ entities: [CollectionItem<Entity>]) {
+    private func append(_ entities: [Input]) {
         let newElements = entities.compactMap(transform)
         elements.value.append(contentsOf: newElements)
     }

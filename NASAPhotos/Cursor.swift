@@ -31,13 +31,9 @@ protocol CursorProtocol: Equatable {
     func next() -> AnyPublisher<Self?, Error>
 }
 
-extension CollectionEntity {
-    
-    ///
-    /// Returns a link to retrieve the next subset of the collection.
-    ///
-    func nextLink() -> LinkEntity<URL>? {
-        links.first { $0.rel == .next }
+extension CursorProtocol {
+    func eraseToAnyCursor() -> AnyCursor<Value> {
+        AnyCursor(self)
     }
 }
 
