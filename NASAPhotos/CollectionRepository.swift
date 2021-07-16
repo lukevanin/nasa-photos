@@ -17,7 +17,7 @@ import Combine
 /// position of a batch of data, and provides methods to retrieve the batch of data, or retrieve a reference to
 /// the next batch in the sequence.
 ///
-final class CollectionRepository<Element>: CursorProtocol where Element: Equatable & Decodable {
+struct CollectionRepository<Element>: CursorProtocol where Element: Equatable & Decodable {
     
     private let elements: [CollectionItem<Element>]
     private let nextURL: URL?
@@ -27,7 +27,7 @@ final class CollectionRepository<Element>: CursorProtocol where Element: Equatab
     /// Initializes the photos repository with a web service. In future this initializer may accept additional
     /// parameters that may be used to filter the search results.
     ///
-    convenience init(url: URL, service: CodableGetService) {
+    init(url: URL, service: CodableGetService) {
         self.init(
             elements: [],
             nextURL: url,

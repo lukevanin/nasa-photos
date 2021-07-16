@@ -52,12 +52,6 @@ struct AnyCursor<Value> {
     private let internalEquals: Equals
     private let internalCursor: Any
     
-//    init(fetch: @escaping Fetch, next: @escaping Next, equals: @escaping Equals) {
-//        self.internalFetch = fetch
-//        self.internalNext = next
-//        self.internalEquals = equals
-//    }
-    
     func fetch() -> AnyPublisher<Value, Error> {
         internalFetch()
     }

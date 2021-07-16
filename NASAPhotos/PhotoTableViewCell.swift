@@ -57,6 +57,12 @@ final class PhotoTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setupLayout()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbnailImageView.url = nil
     }
     
     private func setupLayout() {

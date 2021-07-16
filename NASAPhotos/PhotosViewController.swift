@@ -174,6 +174,16 @@ final class PhotosViewController: UIViewController {
                 }
             )
         )
+        if tableView.numberOfRows(inSection: 0) > 0 {
+            viewController.addAction(
+                UIAlertAction(
+                    title: NSLocalizedString("photos-error-alert-cancel-button", comment: "Error alert retry button caption"),
+                    style: .cancel,
+                    handler: nil
+                )
+            )
+
+        }
         present(viewController, animated: true, completion: nil)
     }
     

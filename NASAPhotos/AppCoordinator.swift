@@ -22,7 +22,7 @@ final class AppCoordinator {
     
     init() {
         #warning("TODO: Compose query URL in the model")
-        let baseURL = URL(string: "https://images-api.nasa.gov/search?q=%22%22")!
+        let baseURL = URL(string: "https://images-api.nasa.gov/search?q=%22%22&&media_type=image")!
         let decoder: JSONDecoder = {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase

@@ -10,7 +10,7 @@ import Foundation
 
 struct CollectionItem<Item> {
     let data: [Item]
-    let links: [LinkEntity<WrappedURLEntity>]
+    let links: [LinkEntity<WrappedURLEntity>]?
     let href: WrappedURLEntity
 }
 

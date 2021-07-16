@@ -16,10 +16,10 @@ struct PhotoBuilder {
         guard let item = entity.data.first else {
             return nil
         }
-        let thumbnailLink = entity.links.first { $0.rel == .preview }
+        let thumbnailLink = entity.links?.first { $0.rel == .preview }
         let thumbnailImageURL = thumbnailLink?.href
         return Photo(
-            id: item.id,
+            id: UUID().uuidString,
             title: item.title,
             dateCreated: item.dateCreated,
             photographer: item.photographer,

@@ -12,6 +12,8 @@
 
 "photos-error-alert-retry-button" = "Retry";
 
+"photos-error-alert-cancel-button" = "Cancel";
+
 "photo-title" = "The Milky Way";
 
 "photo-error-alert-title" = "Oops, something went wrong!";
