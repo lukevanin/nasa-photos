@@ -17,7 +17,7 @@ import Combine
 /// position of a batch of data, and provides methods to retrieve the batch of data, or retrieve a reference to
 /// the next batch in the sequence.
 ///
-final class CollectionRepository<Element>: CursorProtocol where Element: Decodable {
+final class CollectionRepository<Element>: CursorProtocol where Element: Equatable & Decodable {
     
     private let elements: [CollectionItem<Element>]
     private let nextURL: URL?
@@ -40,7 +40,7 @@ final class CollectionRepository<Element>: CursorProtocol where Element: Decodab
     /// subset in the collection. Used to initialize subsequent instances that refer to additional locations
     /// within the series.
     ///
-    private init(
+    init(
         elements: [CollectionItem<Element>],
         nextURL: URL?,
         service: CodableGetService
@@ -81,6 +81,12 @@ final class CollectionRepository<Element>: CursorProtocol where Element: Decodab
                 )
             }
             .eraseToAnyPublisher()
+    }
+    
+    static func ==(lhs: CollectionRepository, rhs: CollectionRepository) -> Bool {
+        return true &&
+            lhs.elements == rhs.elements &&
+            lhs.nextURL == rhs.nextURL
     }
 }
 

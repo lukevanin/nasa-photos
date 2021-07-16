@@ -14,6 +14,10 @@ struct CollectionItem<Item> {
     let href: WrappedURL
 }
 
+extension CollectionItem: Equatable where Item: Equatable {
+    
+}
+
 extension CollectionItem: Decodable where Item: Decodable {
 
 }

@@ -16,7 +16,7 @@ import Combine
 /// Use a cursor to incrementally fetch a set of data. A typical use case is fetching paginated data from a
 /// web service.
 ///
-protocol CursorProtocol {
+protocol CursorProtocol: Equatable {
     
     associatedtype Value
     
@@ -41,37 +41,26 @@ extension CollectionEntity {
     }
 }
 
+
 ///
-/// Type erasure that a concrete interface for interacting with an abstract cursor.
+/// Concrete erasure used to interact with abstract cursor types.
 ///
 struct AnyCursor<Value> {
     
     typealias Fetch = () -> AnyPublisher<Value, Error>
     typealias Next = () -> AnyPublisher<AnyCursor<Value>?, Error>
+    typealias Equals = (AnyCursor<Value>) -> Bool
     
     private let internalFetch: Fetch
     private let internalNext: Next
+    private let internalEquals: Equals
+    private let internalCursor: Any
     
-    init<C>(_ cursor: C) where C: CursorProtocol, C.Value == Value {
-        self.init(
-            fetch: cursor.fetch,
-            next: {
-                cursor
-                    .next()
-                    .map { (cursor: C?) -> AnyCursor<Value>? in
-                        cursor.flatMap { cursor in
-                            AnyCursor<Value>(cursor)
-                        }
-                    }
-                    .eraseToAnyPublisher()
-            }
-        )
-    }
-    
-    init(fetch: @escaping Fetch, next: @escaping Next) {
-        self.internalFetch = fetch
-        self.internalNext = next
-    }
+//    init(fetch: @escaping Fetch, next: @escaping Next, equals: @escaping Equals) {
+//        self.internalFetch = fetch
+//        self.internalNext = next
+//        self.internalEquals = equals
+//    }
     
     func fetch() -> AnyPublisher<Value, Error> {
         internalFetch()
@@ -80,5 +69,33 @@ struct AnyCursor<Value> {
     func next() -> AnyPublisher<AnyCursor<Value>?, Error> {
         internalNext()
     }
+    
+    static func ==(lhs: AnyCursor<Value>, rhs: AnyCursor<Value>) -> Bool {
+        return lhs.internalEquals(rhs)
+    }
+}
+
+extension AnyCursor {
+    
+    init<C>(_ cursor: C) where C: CursorProtocol, C.Value == Value {
+        self.init(
+            internalFetch: cursor.fetch,
+            internalNext: {
+                cursor
+                    .next()
+                    .map { (cursor: C?) -> AnyCursor<Value>? in
+                        cursor.flatMap { cursor in
+                            AnyCursor<Value>(cursor)
+                        }
+                    }
+                    .eraseToAnyPublisher()
+            },
+            internalEquals: { other in
+                (other.internalCursor as? C) == cursor
+            },
+            internalCursor: cursor
+        )
+    }
+
 }
 

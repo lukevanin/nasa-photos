@@ -34,6 +34,9 @@
 		FC3493C126A1AB9300531505 /* PhotoManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C026A1AB9300531505 /* PhotoManifest.swift */; };
 		FC3493C326A1AB9F00531505 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C226A1AB9F00531505 /* Photo.swift */; };
 		FC3493C726A1AFE300531505 /* PhotoManifestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C626A1AFE300531505 /* PhotoManifestRepository.swift */; };
+		FC3493C926A1B25800531505 /* CollectionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C826A1B25800531505 /* CollectionRepositoryTests.swift */; };
+		FC3493CB26A1B68300531505 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493CA26A1B68300531505 /* Helpers.swift */; };
+		FC3493CD26A1B8D500531505 /* MockCodableGetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493CC26A1B8D500531505 /* MockCodableGetService.swift */; };
 		FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */; };
 		FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */; };
 		FCAE15AD269C28BB00FA4314 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AC269C28BB00FA4314 /* PhotosViewController.swift */; };
@@ -94,6 +97,9 @@
 		FC3493C026A1AB9300531505 /* PhotoManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifest.swift; sourceTree = "<group>"; };
 		FC3493C226A1AB9F00531505 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		FC3493C626A1AFE300531505 /* PhotoManifestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifestRepository.swift; sourceTree = "<group>"; };
+		FC3493C826A1B25800531505 /* CollectionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRepositoryTests.swift; sourceTree = "<group>"; };
+		FC3493CA26A1B68300531505 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		FC3493CC26A1B8D500531505 /* MockCodableGetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCodableGetService.swift; sourceTree = "<group>"; };
 		FCAE15A5269C28BB00FA4314 /* NASAPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASAPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -229,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				FCAE15BF269C28BD00FA4314 /* NASAPhotosTests.swift */,
+				FC3493C826A1B25800531505 /* CollectionRepositoryTests.swift */,
+				FC3493CA26A1B68300531505 /* Helpers.swift */,
 				FCAE15C1269C28BD00FA4314 /* Info.plist */,
 			);
 			path = NASAPhotosTests;
@@ -287,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				FCAE15E7269C65F200FA4314 /* MockPhotosViewModel.swift */,
+				FC3493CC26A1B8D500531505 /* MockCodableGetService.swift */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -477,6 +486,7 @@
 				FC3493B126A19D3900531505 /* FoundationExtensions.swift in Sources */,
 				FC349386269F24AE00531505 /* CollectionResponseEntity.swift in Sources */,
 				FC34936A269DA91A00531505 /* PhotoViewController.swift in Sources */,
+				FC3493CD26A1B8D500531505 /* MockCodableGetService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +495,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCAE15C0269C28BD00FA4314 /* NASAPhotosTests.swift in Sources */,
+				FC3493CB26A1B68300531505 /* Helpers.swift in Sources */,
+				FC3493C926A1B25800531505 /* CollectionRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
