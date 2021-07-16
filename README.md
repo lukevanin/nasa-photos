@@ -14,7 +14,7 @@ TODO: Document use of recieve completion instead of using assign.
 TODO: Document cursor design.
 TODO: Document entities.
 TODO: Document assumption using TLS.
-TODO: Images sometimes do not appear.
+FIXME: Images sometimes do not appear.
 TODO: Use colour assets.
 TODO: Use replaceable theme for UI.
 TODO: Document API issues: Invalid URLs, documentation and API mismatch for manifest, HTTP URLs.

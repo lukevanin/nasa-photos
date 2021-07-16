@@ -58,6 +58,7 @@ protocol PhotosViewModelProtocol {
 
 final class PhotosViewModel: PhotosViewModelProtocol {
     
+    typealias Model = PagedCollectionModel<PhotoEntity, Photo>
     typealias Transform = (Photo) -> PhotosItemViewModel
     
     var items = CurrentValueSubject<[PhotosItemViewModel], Never>([])
@@ -65,11 +66,11 @@ final class PhotosViewModel: PhotosViewModelProtocol {
     
     private var cancellables = Set<AnyCancellable>()
     
-    private let model: PhotosModel
+    private let model: Model
     
-    init(model: PhotosModel, transform: @escaping Transform) {
+    init(model: Model, transform: @escaping Transform) {
         self.model = model
-        model.photos
+        model.elements
             .map { photos in
                 photos.map(transform)
             }

@@ -16,7 +16,7 @@ final class AppCoordinator {
     private let photoDescription: PhotoDescriptionBuilder
     
     private let getService: CodableGetService
-    private let photosModel: PhotosModel
+    private let photosModel: PagedCollectionModel<PhotoEntity, Photo>
     
     private(set) var rootViewController: UINavigationController!
     
@@ -40,7 +40,7 @@ final class AppCoordinator {
         let photoBuilder = PhotoBuilder(
             service: getService
         )
-        let photosModel = PhotosModel(
+        let photosModel = PagedCollectionModel<PhotoEntity, Photo>(
             cursor: AnyCursor(repository),
             transform: photoBuilder.makePhoto
         )
@@ -76,7 +76,7 @@ final class AppCoordinator {
     }
     
     private func showPhoto(_ photo: PhotosItemViewModel) {
-        guard let photo = photosModel.photos.value.first(where: { $0.id == photo.id }) else {
+        guard let photo = photosModel.elements.value.first(where: { $0.id == photo.id }) else {
             return
         }
         showPhoto(photo)
@@ -90,9 +90,12 @@ final class AppCoordinator {
     private func makePhotoViewController(
         with photo: Photo
     ) -> PhotoViewController {
+        let manifestRepository = PhotoManifestRepository(
+            service: getService
+        )
         let model = PhotoDetailsModel(
             photo: photo,
-            service: getService
+            manifestRepository: manifestRepository
         )
         let viewModel = PhotoViewModel(
             model: model,

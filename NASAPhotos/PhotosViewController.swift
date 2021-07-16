@@ -9,13 +9,13 @@ import UIKit
 import Combine
 
 
-#warning("TODO: Show loading indicator")
-
 final class PhotosViewController: UIViewController {
+    
+    #warning("TODO: Refactor into general purpose homogenous list view controller")
     
     typealias OnSelectItem = (PhotosItemViewModel) -> Void
 
-    private static let photoCellIdentifier = "photo-cell"
+    private static let cellIdentifier = "item-cell"
     
     private var onSelectItem: OnSelectItem?
     
@@ -186,7 +186,7 @@ final class PhotosViewController: UIViewController {
     private func setupTableView() {
         tableView.register(
             PhotoTableViewCell.self,
-            forCellReuseIdentifier: Self.photoCellIdentifier
+            forCellReuseIdentifier: Self.cellIdentifier
         )
         dataSource = UITableViewDiffableDataSource<Int, PhotosItemViewModel>(
             tableView: tableView,
@@ -232,7 +232,7 @@ final class PhotosViewController: UIViewController {
         with item: PhotosItemViewModel
     ) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: Self.photoCellIdentifier,
+            withIdentifier: Self.cellIdentifier,
             for: indexPath
         )
         if let cell = cell as? PhotoTableViewCell {

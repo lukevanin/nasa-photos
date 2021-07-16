@@ -60,7 +60,6 @@ final class PhotoTableViewCell: UITableViewCell {
     }
     
     private func setupLayout() {
-        #warning("TODO: Insert spacing between title and subtitle")
         UIStackView(
             axis: .horizontal,
             spacing: 16,

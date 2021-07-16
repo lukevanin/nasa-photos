@@ -16,11 +16,11 @@ final class PhotoDetailsModel {
     let error = PassthroughSubject<Error, Never>()
 
     private var manifestCancellable: AnyCancellable?
-    private let service: CodableGetService
+    private let manifestRepository: PhotoManifestRepositoryProtocol
     
-    init(photo: Photo, service: CodableGetService) {
+    init(photo: Photo, manifestRepository: PhotoManifestRepositoryProtocol) {
         self.photo = CurrentValueSubject(photo)
-        self.service = service
+        self.manifestRepository = manifestRepository
     }
     
     func reload() {
@@ -28,14 +28,8 @@ final class PhotoDetailsModel {
             error.send(URLError(.resourceUnavailable))
             return
         }
-        manifestCancellable = service
-            .get(MediaAssetManifestEntity.self, url: manifestURL)
-            .map { manifest in
-                manifest.map { $0.url }
-            }
-            .map { urls in
-                PhotoManifest(urls: urls)
-            }
+        manifestCancellable = manifestRepository
+            .fetchManifest(for: manifestURL)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     guard let self = self else {
