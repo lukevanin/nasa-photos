@@ -9,18 +9,65 @@ import UIKit
 import Combine
 
 
-final class PhotosViewController: UIViewController {
+///
+///
+///
+protocol ListViewModelProtocol {
     
-    #warning("TODO: Refactor into general purpose homogenous list view controller")
+    associatedtype Item: Hashable
     
-    typealias OnSelectItem = (PhotosItemViewModel) -> Void
+    ///
+    /// Publishes available items.
+    ///
+    var items: AnyPublisher<[Item], Never> { get }
 
-    private static let cellIdentifier = "item-cell"
+    ///
+    /// Fetches the next page of items. If no more items are available then this does nothing.
+    ///
+    func reset()
     
-    private var onSelectItem: OnSelectItem?
+    ///
+    /// Resets the internal state of the view model so that the next fetch will retrieve the first page of items.
+    ///
+    func fetch()
+    
+    ///
+    /// Selects the item in the liast at the given index.
+    ///
+    func selectItem(at index: Int)
+}
+
+
+///
+///
+///
+protocol CellBuilder {
+    associatedtype Cell: UITableViewCell
+    associatedtype Item
+
+    var reuseIdentifier: String { get }
+    func register(in tableView: UITableView)
+    func cell(in tableView: UITableView, at indexPath: IndexPath, with item: Item) -> UITableViewCell?
+}
+
+extension CellBuilder {
+    var reuseIdentifier: String {
+        String(describing: Cell.self)
+    }
+    
+    func register(in tableView: UITableView) {
+        tableView.register(Cell.self, forCellReuseIdentifier: reuseIdentifier)
+    }
+}
+
+
+///
+///
+///
+final class ListViewController<ViewModel, CellProvider>: UIViewController, UITableViewDelegate, UITableViewDataSourcePrefetching where ViewModel: ListViewModelProtocol, CellProvider: CellBuilder, ViewModel.Item == CellProvider.Item {
     
     private var cancellables = Set<AnyCancellable>()
-    private var dataSource: UITableViewDiffableDataSource<Int, PhotosItemViewModel>?
+    private var dataSource: UITableViewDiffableDataSource<Int, ViewModel.Item>?
     private var refreshNeeded = false
     
     private let loadingIndicatorView: UIActivityIndicatorView = {
@@ -35,14 +82,13 @@ final class PhotosViewController: UIViewController {
         return view
     }()
     private let tableView = UITableView()
-    private let viewModel: PhotosViewModelProtocol
     
-    init(
-        viewModel: PhotosViewModelProtocol,
-        onSelectItem: OnSelectItem? = nil
-    ) {
+    private let viewModel: ViewModel
+    private let cellProvider: CellProvider
+    
+    init(viewModel: ViewModel, cellProvider: CellProvider) {
         self.viewModel = viewModel
-        self.onSelectItem = onSelectItem
+        self.cellProvider = cellProvider
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -56,7 +102,6 @@ final class PhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationItem()
         setupTableView()
         setNeedsRefresh()
     }
@@ -80,10 +125,6 @@ final class PhotosViewController: UIViewController {
         removeViewModelObservers()
     }
     
-    private func setupNavigationItem() {
-        navigationItem.title = NSLocalizedString("photos-title", comment: "Photos screen title")
-    }
-    
     // ViewModel
     
     private func addViewModelObservers() {
@@ -95,15 +136,6 @@ final class PhotosViewController: UIViewController {
                 }
                 self.update(with: items)
                 self.endRefresh()
-            }
-            .store(in: &cancellables)
-        viewModel.errors
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
-                guard let self = self else {
-                    return
-                }
-                self.presentError(error)
             }
             .store(in: &cancellables)
     }
@@ -129,7 +161,7 @@ final class PhotosViewController: UIViewController {
         viewModel.fetch()
     }
     
-    private func update(with items: [PhotosItemViewModel]) {
+    private func update(with items: [ViewModel.Item]) {
         let snapshot = makeSnapshot(for: items)
         dataSource?.apply(
             snapshot,
@@ -148,43 +180,11 @@ final class PhotosViewController: UIViewController {
         }
     }
     
-    private func makeSnapshot(for items: [PhotosItemViewModel]) -> NSDiffableDataSourceSnapshot<Int, PhotosItemViewModel> {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, PhotosItemViewModel>()
+    private func makeSnapshot(for items: [ViewModel.Item]) -> NSDiffableDataSourceSnapshot<Int, ViewModel.Item> {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, ViewModel.Item>()
         snapshot.appendSections([0])
         snapshot.appendItems(items, toSection: 0)
         return snapshot
-    }
-    
-    private func presentError(_ message: String) {
-        #warning("TODO: Refactor error into coordinator, called from the view model")
-        let viewController = UIAlertController(
-            title: NSLocalizedString("photos-error-alert-title", comment: "Error alert title"),
-            message: message,
-            preferredStyle: .alert
-        )
-        viewController.addAction(
-            UIAlertAction(
-                title: NSLocalizedString("photos-error-alert-retry-button", comment: "Error alert retry button caption"),
-                style: .default,
-                handler: { [weak self] _ in
-                    guard let self = self else {
-                        return
-                    }
-                    self.retry()
-                }
-            )
-        )
-        if tableView.numberOfRows(inSection: 0) > 0 {
-            viewController.addAction(
-                UIAlertAction(
-                    title: NSLocalizedString("photos-error-alert-cancel-button", comment: "Error alert retry button caption"),
-                    style: .cancel,
-                    handler: nil
-                )
-            )
-
-        }
-        present(viewController, animated: true, completion: nil)
     }
     
     // MARK: Table View
@@ -194,13 +194,10 @@ final class PhotosViewController: UIViewController {
     }
 
     private func setupTableView() {
-        tableView.register(
-            PhotoTableViewCell.self,
-            forCellReuseIdentifier: Self.cellIdentifier
-        )
-        dataSource = UITableViewDiffableDataSource<Int, PhotosItemViewModel>(
+        cellProvider.register(in: tableView)
+        dataSource = UITableViewDiffableDataSource<Int, ViewModel.Item>(
             tableView: tableView,
-            cellProvider: Self.makeCell
+            cellProvider: cellProvider.cell
         )
         tableView.dataSource = dataSource
         tableView.delegate = self
@@ -236,50 +233,18 @@ final class PhotosViewController: UIViewController {
         }()
     }
     
-    private static func makeCell(
-        in tableView: UITableView,
-        at indexPath: IndexPath,
-        with item: PhotosItemViewModel
-    ) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: Self.cellIdentifier,
-            for: indexPath
-        )
-        if let cell = cell as? PhotoTableViewCell {
-            configureCell(cell, with: item)
-        }
-        return cell
-    }
+    // MARK: UITableViewDelegate
     
-    private static func configureCell(
-        _ cell: PhotoTableViewCell,
-        with item: PhotosItemViewModel
-    ) {
-        cell.imageURL = item.thumbnailImageURL
-        cell.title = item.title
-        cell.subtitle = item.description
-    }
-}
-
-extension PhotosViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let onSelectItem = onSelectItem else {
-            return
-        }
-        guard let item = dataSource?.itemIdentifier(for: indexPath) else {
-            return
-        }
-        onSelectItem(item)
+        viewModel.selectItem(at: indexPath.item)
     }
-}
 
-extension PhotosViewController: UITableViewDataSourcePrefetching {
+    // MARK: UITableViewDataSourcePrefetching
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         let lastIndex = tableView.numberOfRows(inSection: 0) - 1
         let lastIndexPath = IndexPath(item: lastIndex, section: 0)
         if indexPaths.contains(lastIndexPath) {
-            print(lastIndexPath, indexPaths)
             viewModel.fetch()
         }
     }

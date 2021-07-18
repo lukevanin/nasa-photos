@@ -61,14 +61,12 @@ final class PhotoViewModel: PhotoViewModelProtocol {
     private func showError(message: String) {
         errorCoordinator?.showError(
             message: message,
+            cancellable: true,
             retry: { [weak self] in
                 guard let self = self else {
                     return
                 }
                 self.model.reload()
-            },
-            cancel: {
-                
             }
         )
     }

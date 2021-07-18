@@ -22,7 +22,7 @@ extension PhotoDescriptionProtocol {
 }
 
 
-final class PhotoDescriptionBuilder: PhotoDescriptionProtocol {
+final class PhotoDescriptionFormatter: PhotoDescriptionProtocol {
     
     private let dateFormatter: DateFormatter
     

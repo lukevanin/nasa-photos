@@ -9,18 +9,25 @@ import Foundation
 import Combine
 
 
-final class MockPhotosViewModel: PhotosViewModelProtocol {
+final class MockPhotosViewModel<Item>: ListViewModelProtocol where Item: Hashable {
     
-    typealias Fetch = () throws -> [PhotosItemViewModel]
+    typealias Fetch = () -> [Item]
+    typealias SelectItem = (Int) -> Void
     
-    var items = CurrentValueSubject<[PhotosItemViewModel], Never>([])
-    var errors = PassthroughSubject<String, Never>()
-    
+    var items: AnyPublisher<[Item], Never>
+
     var fetchDelay = TimeInterval(1)
     var mockFetch: Fetch!
+    var mockSelectItem: SelectItem!
+
+    private var internalItems = CurrentValueSubject<[Item], Never>([])
     
+    init() {
+        self.items = internalItems.eraseToAnyPublisher()
+    }
+
     func reset() {
-        items.value = []
+        internalItems.value = []
     }
     
     func fetch() {
@@ -28,13 +35,13 @@ final class MockPhotosViewModel: PhotosViewModelProtocol {
             guard let self = self else {
                 return
             }
-            do {
-                let newItems =  try self.mockFetch()
-                self.items.value.append(contentsOf: newItems)
-            }
-            catch {
-                self.errors.send(error.localizedDescription)
-            }
+            let newItems = self.mockFetch()
+            self.internalItems.value.append(contentsOf: newItems)
         }
     }
+    
+    func selectItem(at index: Int) {
+        mockSelectItem?(index)
+    }
+
 }

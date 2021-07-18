@@ -8,18 +8,24 @@
 import UIKit
 
 
-protocol ErrorCoordinatorProtocol {
+///
+///
+///
+protocol ErrorCoordinatorProtocol: AnyObject {
     typealias Retry = () -> Void
     typealias Cancel = () -> Void
-    func showError(message: String, retry: Retry?, cancel: Cancel?)
+    func showError(message: String, cancellable: Bool, retry: Retry?)
 }
 
 
+///
+///
+///
 final class ErrorAlertCoordinator: ErrorCoordinatorProtocol {
     
     weak var presentingViewController: UIViewController?
     
-    func showError(message: String, retry: Retry?, cancel: Cancel?) {
+    func showError(message: String, cancellable: Bool, retry: Retry?) {
         let viewController = UIAlertController(
             title: NSLocalizedString("error-alert-title", comment: "Error alert title"),
             message: message,
@@ -36,14 +42,12 @@ final class ErrorAlertCoordinator: ErrorCoordinatorProtocol {
                 )
             )
         }
-        if let cancel = cancel {
+        if cancellable {
             viewController.addAction(
                 UIAlertAction(
                     title: NSLocalizedString("error-alert-cancel-button", comment: "Error alert retry button caption"),
                     style: .default,
-                    handler: { _ in
-                        cancel()
-                    }
+                    handler: nil
                 )
             )
         }
