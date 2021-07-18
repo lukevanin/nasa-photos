@@ -24,11 +24,10 @@ Default Xcode settings are used for indentation and formatting - lines are inden
 
 ### Application ###
 
-1. Support iPhone and iPad vertical and horizontal orientations.
+1. Support iPhone vertical and horizontal orientations.
 2. Use localizable strings for text.
-3. Support right-to-left layouts: Use leading/trailing vs left/right.
-4. Support dynamic font sizing for text.
-5. Support dark and light mode: Use system colour names.
+3. Support dynamic font sizing for text.
+4. Support dark and light mode: Use system colour names.
 
 
 ### Photos List Screen ###
