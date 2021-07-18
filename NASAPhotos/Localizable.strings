@@ -6,18 +6,12 @@
   
 */
 
+"error-alert-title" = "Oops, something went wrong!";
+
+"error-alert-retry-button" = "Retry";
+
+"error-alert-cancel-button" = "Cancel";
+
 "photos-title" = "The Milky Way";
 
-"photos-error-alert-title" = "Oops, something went wrong!";
-
-"photos-error-alert-retry-button" = "Retry";
-
-"photos-error-alert-cancel-button" = "Cancel";
-
 "photo-title" = "The Milky Way";
-
-"photo-error-alert-title" = "Oops, something went wrong!";
-
-"photo-error-alert-retry-button" = "Retry";
-
-"photo-error-alert-cancel-button" = "Cancel";

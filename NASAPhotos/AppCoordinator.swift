@@ -14,7 +14,8 @@ final class AppCoordinator {
     private var cancellables = Set<AnyCancellable>()
     
     private let photoDescription: PhotoDescriptionBuilder
-    
+    private let errorCoordinator: ErrorCoordinatorProtocol
+
     private let getService: CodableGetService
     private let photosModel: PagedCollectionModel<CollectionItem<PhotoEntity>, Photo>
     
@@ -50,14 +51,17 @@ final class AppCoordinator {
                 return formatter
             }()
         )
+        let errorCoordinator = ErrorAlertCoordinator()
         self.getService = getService
         self.photoDescription = photoDescription
         self.photosModel = photosModel
+        self.errorCoordinator = errorCoordinator
         let viewController = makePhotosViewController()
         rootViewController = UINavigationController(
             rootViewController: viewController
         )
         rootViewController.navigationBar.prefersLargeTitles = true
+        errorCoordinator.presentingViewController = rootViewController
     }
     
     private func makePhotosViewController() -> UIViewController {
@@ -102,6 +106,7 @@ final class AppCoordinator {
         let viewController = PhotoViewController(
             viewModel: viewModel
         )
+        viewModel.errorCoordinator = errorCoordinator
         return viewController
     }
     

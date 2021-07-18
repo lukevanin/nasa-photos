@@ -34,6 +34,8 @@ private let defaultImageSession: URLSession = {
 
 final class URLImageView: UIView {
     
+    #warning("TODO: Refactor image loading state into view model class, and test view model")
+    
     var url: URL? {
         didSet {
             invalidateURL()

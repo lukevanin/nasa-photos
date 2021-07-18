@@ -10,32 +10,18 @@ import Combine
 
 
 ///
-/// Defines the view state for a single photo.
 ///
-struct PhotoInfoViewModel: Identifiable {
-    
-    /// Unique identifier of the item.
-    let id: String
-
-    /// Text title of the photo.
-    var title: String
-    
-    /// Short description of the photo. Includes the photographer and date that the photo was created.
-    var description: String
-    
-    /// Detailed information about the photo.
-    var details: String
-}
-
-
-struct PhotoViewModel {
+///
+final class PhotoViewModel: PhotoViewModelProtocol {
     
     typealias TransformPhoto = (Photo) -> PhotoInfoViewModel
     
     let photo: AnyPublisher<PhotoInfoViewModel, Never>
     let previewImageURL: AnyPublisher<URL, Never>
-    let error: AnyPublisher<String, Never>
+    
+    var errorCoordinator: ErrorCoordinatorProtocol?
 
+    private var cancellables = Set<AnyCancellable>()
     private let model: PhotoDetailsModel
     
     init(
@@ -57,12 +43,33 @@ struct PhotoViewModel {
                 manifest?.firstURL(matching: preferredPreviewImageVariants)
             }
             .eraseToAnyPublisher()
-        self.error = model.error
-            .map { $0.localizedDescription }
-            .eraseToAnyPublisher()
+        model.error
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] error in
+                guard let self = self else {
+                    return
+                }
+                self.showError(message: error.localizedDescription)
+            }
+            .store(in: &cancellables)
     }
     
     func reload() {
         model.reload()
+    }
+    
+    private func showError(message: String) {
+        errorCoordinator?.showError(
+            message: message,
+            retry: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                self.model.reload()
+            },
+            cancel: {
+                
+            }
+        )
     }
 }

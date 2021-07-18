@@ -32,6 +32,9 @@ extension PhotosItemViewModel: Hashable {
 }
 
 
+///
+///
+///
 protocol PhotosViewModelProtocol {
     
     ///
@@ -56,6 +59,9 @@ protocol PhotosViewModelProtocol {
 }
 
 
+///
+///
+///
 final class PhotosViewModel: PhotosViewModelProtocol {
     
     typealias Model = PagedCollectionModel<CollectionItem<PhotoEntity>, Photo>

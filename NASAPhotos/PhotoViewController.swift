@@ -9,6 +9,38 @@ import UIKit
 import Combine
 
 
+///
+/// Defines the view state for a single photo.
+///
+struct PhotoInfoViewModel: Identifiable {
+    
+    /// Unique identifier of the item.
+    let id: String
+
+    /// Text title of the photo.
+    var title: String
+    
+    /// Short description of the photo. Includes the photographer and date that the photo was created.
+    var description: String
+    
+    /// Detailed information about the photo.
+    var details: String
+}
+
+
+///
+///
+///
+protocol PhotoViewModelProtocol {
+    var photo: AnyPublisher<PhotoInfoViewModel, Never> { get }
+    var previewImageURL: AnyPublisher<URL, Never> { get }
+    func reload()
+}
+
+
+///
+///
+///
 final class PhotoViewController: UIViewController {
     
     private let photoImageView: URLImageView = {
@@ -38,9 +70,9 @@ final class PhotoViewController: UIViewController {
     private var refreshNeeded = false
     private var cancellables = Set<AnyCancellable>()
 
-    private let viewModel: PhotoViewModel
+    private let viewModel: PhotoViewModelProtocol
 
-    init(viewModel: PhotoViewModel) {
+    init(viewModel: PhotoViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -128,16 +160,6 @@ final class PhotoViewController: UIViewController {
                 self.updateImage(with: imageURL)
             }
             .store(in: &cancellables)
-        
-        viewModel.error
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
-                guard let self = self else {
-                    return
-                }
-                self.showError(message: error)
-            }
-            .store(in: &cancellables)
     }
     
     private func removeViewModelObservers() {
@@ -155,34 +177,4 @@ final class PhotoViewController: UIViewController {
     private func updateImage(with url: URL) {
         photoImageView.url = url
     }
-    
-    private func showError(message: String) {
-        let viewController = UIAlertController(
-            title: NSLocalizedString("photo-error-alert-title", comment: "Error alert title"),
-            message: message,
-            preferredStyle: .alert
-        )
-        viewController.addAction(
-            UIAlertAction(
-                title: NSLocalizedString("photo-error-alert-retry-button", comment: "Error alert retry button caption"),
-                style: .default,
-                handler: { [weak self] _ in
-                    guard let self = self else {
-                        return
-                    }
-                    self.setNeedsRefresh()
-                    self.refreshIfNeeded()
-                }
-            )
-        )
-        viewController.addAction(
-            UIAlertAction(
-                title: NSLocalizedString("photo-error-alert-cancel-button", comment: "Error alert retry button caption"),
-                style: .default,
-                handler: nil
-            )
-        )
-        present(viewController, animated: true, completion: nil)
-    }
-
 }
