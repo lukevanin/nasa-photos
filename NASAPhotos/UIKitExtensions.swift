@@ -7,7 +7,12 @@
 
 import UIKit
 
+
 extension UIEdgeInsets {
+    
+    ///
+    /// Convenience initializer used to construct edge insets given horizontal and/or vertical insets.
+    ///
     init(horizontal: CGFloat = 0, vertical: CGFloat = 0) {
         self.init(
             top: vertical,
@@ -21,6 +26,9 @@ extension UIEdgeInsets {
 
 extension UIScrollView {
     
+    ///
+    ///
+    ///
     convenience init(
         frame: CGRect = .zero,
         axis: NSLayoutConstraint.Axis = .vertical,
@@ -30,6 +38,9 @@ extension UIScrollView {
         addContent(axis: axis, contentView: contentView)
     }
 
+    ///
+    ///
+    ///
     func addContent(
         axis: NSLayoutConstraint.Axis? = .vertical,
         contentView: UIView

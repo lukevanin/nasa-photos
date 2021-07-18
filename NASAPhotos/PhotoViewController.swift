@@ -25,21 +25,31 @@ struct PhotoInfoViewModel: Identifiable {
     
     /// Detailed information about the photo.
     var details: String
+    
+    ///
+    var previewImageURL: URL?
 }
 
 
+
 ///
-///
+/// Defines an abstract interface for a view model that displays details for a photo.
 ///
 protocol PhotoViewModelProtocol {
+    
+    ///
     var photo: AnyPublisher<PhotoInfoViewModel, Never> { get }
-    var previewImageURL: AnyPublisher<URL, Never> { get }
+    
+    ///
+    /// Reloads the photo data from the resource.
+    ///
     func reload()
 }
 
 
 ///
-///
+/// Displays details about a photo. Displays a large preview image, title, description, and detailed information
+/// about the photo.
 ///
 final class PhotoViewController: UIViewController {
     
@@ -57,11 +67,8 @@ final class PhotoViewController: UIViewController {
     }()
     
     private let bodyLabel: UILabel = {
-        let label = UILabel()
-        let font = UIFont(name: "HelveticaNeue", size: 16)!
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
+        let label = BodyLabel()
         label.adjustsFontForContentSizeCategory = true
-        label.textColor = .label
         label.numberOfLines = 0
         label.text = "Ag"
         return label
@@ -122,7 +129,6 @@ final class PhotoViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
-        navigationItem.title = NSLocalizedString("photo-title", comment: "Photo screen title")
         navigationItem.largeTitleDisplayMode = .never
     }
     
@@ -150,16 +156,6 @@ final class PhotoViewController: UIViewController {
                 self.updateView(with: photo)
             }
             .store(in: &cancellables)
-        
-        viewModel.previewImageURL
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] imageURL in
-                guard let self = self else {
-                    return
-                }
-                self.updateImage(with: imageURL)
-            }
-            .store(in: &cancellables)
     }
     
     private func removeViewModelObservers() {
@@ -172,9 +168,6 @@ final class PhotoViewController: UIViewController {
         infoView.title = photo.title
         infoView.subtitle = photo.description
         bodyLabel.text = photo.details
-    }
-    
-    private func updateImage(with url: URL) {
-        photoImageView.url = url
+        photoImageView.url = photo.previewImageURL
     }
 }

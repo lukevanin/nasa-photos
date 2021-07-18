@@ -8,6 +8,9 @@
 import UIKit
 
 
+///
+/// Displays a photo in a list. Displays a title, subtitle, and an image loaded from the web.
+///
 final class PhotoTableViewCell: UITableViewCell {
     
     var title: String? {

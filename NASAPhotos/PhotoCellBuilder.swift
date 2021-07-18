@@ -31,13 +31,20 @@ extension PhotosListItemViewModel: Hashable {
 }
 
 
-
 ///
+/// Creates and configures a PhotoTableViewCell displayed in a list.
 ///
-///
-final class PhotoCellBuilder: CellBuilder {
+final class PhotoCellBuilder: CellBuilderProtocol {
     
     typealias Cell = PhotoTableViewCell
+    
+    var reuseIdentifier: String {
+        String(describing: Cell.self)
+    }
+    
+    func register(in tableView: UITableView) {
+        tableView.register(Cell.self, forCellReuseIdentifier: reuseIdentifier)
+    }
     
     func cell(
         in tableView: UITableView,

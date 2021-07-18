@@ -8,11 +8,18 @@
 import Foundation
 
 
+///
+/// Abstract interface for formatting a description of a photo, given a photographer's name and a date.
+///
 protocol PhotoDescriptionProtocol {
     func makePhotoDescription(photographer: String?, date: Date?) -> String
 }
 
 extension PhotoDescriptionProtocol {
+    
+    ///
+    /// Convenience method that provides a formatted description from a photo instance.
+    ///
     func makePhotoDescription(for photo: Photo) -> String {
         makePhotoDescription(
             photographer: photo.photographer,
@@ -22,6 +29,10 @@ extension PhotoDescriptionProtocol {
 }
 
 
+///
+/// Provides a formatted description of a photo given a photographer and date. Uses a date formatter to
+/// create a localized representation of the date.
+///
 final class PhotoDescriptionFormatter: PhotoDescriptionProtocol {
     
     private let dateFormatter: DateFormatter

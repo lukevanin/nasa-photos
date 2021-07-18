@@ -47,6 +47,16 @@
 		FC3493E426A4747700531505 /* ErrorMessageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493E326A4747700531505 /* ErrorMessageCoordinator.swift */; };
 		FC3493E826A47D7300531505 /* PhotoCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493E726A47D7300531505 /* PhotoCellBuilder.swift */; };
 		FC3493EA26A48C4500531505 /* PhotoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493E926A48C4500531505 /* PhotoCoordinator.swift */; };
+		FC3493ED26A4A42900531505 /* PhotosViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493EC26A4A42900531505 /* PhotosViewControllerBuilder.swift */; };
+		FC3493EF26A4A84300531505 /* NASAPhotoViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493EE26A4A84300531505 /* NASAPhotoViewControllerBuilder.swift */; };
+		FC3493F126A4AAE100531505 /* PhotoInfoViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493F026A4AAE100531505 /* PhotoInfoViewModelBuilder.swift */; };
+		FC3493F326A4ABAE00531505 /* PhotosListItemViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493F226A4ABAE00531505 /* PhotosListItemViewModelBuilder.swift */; };
+		FC3493F526A4AF4600531505 /* NASAPhotoBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493F426A4AF4600531505 /* NASAPhotoBuilder.swift */; };
+		FC3493FD26A4B21700531505 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493FC26A4B21700531505 /* Theme.swift */; };
+		FC34940026A4B3B000531505 /* StandardTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493FF26A4B3B000531505 /* StandardTheme.swift */; };
+		FC34940226A4B4C300531505 /* CustomTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34940126A4B4C300531505 /* CustomTheme.swift */; };
+		FC34940426A4B63900531505 /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34940326A4B63900531505 /* BodyLabel.swift */; };
+		FC34940826A4C95800531505 /* PhotoManifestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34940726A4C95800531505 /* PhotoManifestBuilder.swift */; };
 		FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */; };
 		FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */; };
 		FCAE15AD269C28BB00FA4314 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AC269C28BB00FA4314 /* ListViewController.swift */; };
@@ -119,6 +129,16 @@
 		FC3493E326A4747700531505 /* ErrorMessageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageCoordinator.swift; sourceTree = "<group>"; };
 		FC3493E726A47D7300531505 /* PhotoCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellBuilder.swift; sourceTree = "<group>"; };
 		FC3493E926A48C4500531505 /* PhotoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCoordinator.swift; sourceTree = "<group>"; };
+		FC3493EC26A4A42900531505 /* PhotosViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewControllerBuilder.swift; sourceTree = "<group>"; };
+		FC3493EE26A4A84300531505 /* NASAPhotoViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoViewControllerBuilder.swift; sourceTree = "<group>"; };
+		FC3493F026A4AAE100531505 /* PhotoInfoViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoViewModelBuilder.swift; sourceTree = "<group>"; };
+		FC3493F226A4ABAE00531505 /* PhotosListItemViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListItemViewModelBuilder.swift; sourceTree = "<group>"; };
+		FC3493F426A4AF4600531505 /* NASAPhotoBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoBuilder.swift; sourceTree = "<group>"; };
+		FC3493FC26A4B21700531505 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		FC3493FF26A4B3B000531505 /* StandardTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTheme.swift; sourceTree = "<group>"; };
+		FC34940126A4B4C300531505 /* CustomTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTheme.swift; sourceTree = "<group>"; };
+		FC34940326A4B63900531505 /* BodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
+		FC34940726A4C95800531505 /* PhotoManifestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifestBuilder.swift; sourceTree = "<group>"; };
 		FCAE15A5269C28BB00FA4314 /* NASAPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASAPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -255,19 +275,21 @@
 		FC3493E126A4731400531505 /* Builders */ = {
 			isa = PBXGroup;
 			children = (
-				FC3493E726A47D7300531505 /* PhotoCellBuilder.swift */,
-				FC349367269DA6E700531505 /* AppBuilder.swift */,
+				FC3493F726A4AF8300531505 /* View Builders */,
+				FC3493F626A4AF7500531505 /* View Controller Builders */,
+				FC3493F826A4AF9400531505 /* View Model Builders */,
+				FC3493F926A4AF9D00531505 /* Model Builders */,
 			);
 			name = Builders;
 			sourceTree = "<group>";
 		};
-		FC3493E226A4746600531505 /* Coordinator */ = {
+		FC3493E226A4746600531505 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
 				FC3493E926A48C4500531505 /* PhotoCoordinator.swift */,
 				FC3493E326A4747700531505 /* ErrorMessageCoordinator.swift */,
 			);
-			name = Coordinator;
+			name = Coordinators;
 			sourceTree = "<group>";
 		};
 		FC3493EB26A48D1900531505 /* Formatters */ = {
@@ -276,6 +298,52 @@
 				FC3493AE26A18D5700531505 /* PhotoDescriptionFormatter.swift */,
 			);
 			name = Formatters;
+			sourceTree = "<group>";
+		};
+		FC3493F626A4AF7500531505 /* View Controller Builders */ = {
+			isa = PBXGroup;
+			children = (
+				FC349367269DA6E700531505 /* AppBuilder.swift */,
+				FC3493EC26A4A42900531505 /* PhotosViewControllerBuilder.swift */,
+				FC3493EE26A4A84300531505 /* NASAPhotoViewControllerBuilder.swift */,
+			);
+			name = "View Controller Builders";
+			sourceTree = "<group>";
+		};
+		FC3493F726A4AF8300531505 /* View Builders */ = {
+			isa = PBXGroup;
+			children = (
+				FC3493E726A47D7300531505 /* PhotoCellBuilder.swift */,
+			);
+			name = "View Builders";
+			sourceTree = "<group>";
+		};
+		FC3493F826A4AF9400531505 /* View Model Builders */ = {
+			isa = PBXGroup;
+			children = (
+				FC3493F026A4AAE100531505 /* PhotoInfoViewModelBuilder.swift */,
+				FC3493F226A4ABAE00531505 /* PhotosListItemViewModelBuilder.swift */,
+			);
+			name = "View Model Builders";
+			sourceTree = "<group>";
+		};
+		FC3493F926A4AF9D00531505 /* Model Builders */ = {
+			isa = PBXGroup;
+			children = (
+				FC3493F426A4AF4600531505 /* NASAPhotoBuilder.swift */,
+				FC34940726A4C95800531505 /* PhotoManifestBuilder.swift */,
+			);
+			name = "Model Builders";
+			sourceTree = "<group>";
+		};
+		FC3493FE26A4B39B00531505 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				FC3493FC26A4B21700531505 /* Theme.swift */,
+				FC3493FF26A4B3B000531505 /* StandardTheme.swift */,
+				FC34940126A4B4C300531505 /* CustomTheme.swift */,
+			);
+			name = Theme;
 			sourceTree = "<group>";
 		};
 		FCAE159C269C28BB00FA4314 = {
@@ -303,16 +371,17 @@
 		FCAE15A7269C28BB00FA4314 /* NASAPhotos */ = {
 			isa = PBXGroup;
 			children = (
-				FCAE15E3269C65A900FA4314 /* Apps */,
+				FCAE15E3269C65A900FA4314 /* App */,
+				FC3493E126A4731400531505 /* Builders */,
+				FC3493E226A4746600531505 /* Coordinators */,
+				FC3493FE26A4B39B00531505 /* Theme */,
 				FCAE15EC269D6DF000FA4314 /* Views */,
 				FCAE15E4269C65BF00FA4314 /* View Controllers */,
-				FCAE15E5269C65CA00FA4314 /* View Models */,
-				FC3493E226A4746600531505 /* Coordinator */,
 				FC3493EB26A48D1900531505 /* Formatters */,
-				FC3493E126A4731400531505 /* Builders */,
+				FCAE15E5269C65CA00FA4314 /* View Models */,
 				FC349377269EED7F00531505 /* Models */,
-				FC34937B269EEE8400531505 /* Repostitories */,
 				FC349384269F248E00531505 /* Entities */,
+				FC34937B269EEE8400531505 /* Repostitories */,
 				FC349378269EED8900531505 /* Services */,
 				FCAE15E6269C65DC00FA4314 /* Mocks */,
 				FCAE15F1269D8A6E00FA4314 /* Helpers */,
@@ -354,13 +423,13 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		FCAE15E3269C65A900FA4314 /* Apps */ = {
+		FCAE15E3269C65A900FA4314 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */,
 				FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */,
 			);
-			name = Apps;
+			name = App;
 			sourceTree = "<group>";
 		};
 		FCAE15E4269C65BF00FA4314 /* View Controllers */ = {
@@ -396,6 +465,7 @@
 			children = (
 				FC349371269ECF0700531505 /* TitleLabel.swift */,
 				FC349373269ED03C00531505 /* SubtitleLabel.swift */,
+				FC34940326A4B63900531505 /* BodyLabel.swift */,
 				FCAE15ED269D6DFF00FA4314 /* PhotoTableViewCell.swift */,
 				FC349375269ED10300531505 /* PhotoInfoView.swift */,
 				FC349365269D9C6900531505 /* URLImageView.swift */,
@@ -550,9 +620,11 @@
 				FC3493EA26A48C4500531505 /* PhotoCoordinator.swift in Sources */,
 				FC3493B326A1AB0900531505 /* URLEntity.swift in Sources */,
 				FC349376269ED10300531505 /* PhotoInfoView.swift in Sources */,
+				FC3493EF26A4A84300531505 /* NASAPhotoViewControllerBuilder.swift in Sources */,
 				FC3493AF26A18D5700531505 /* PhotoDescriptionFormatter.swift in Sources */,
 				FCAE15E8269C65F200FA4314 /* MockPhotosViewModel.swift in Sources */,
 				FCAE15AD269C28BB00FA4314 /* ListViewController.swift in Sources */,
+				FC34940226A4B4C300531505 /* CustomTheme.swift in Sources */,
 				FC3493C726A1AFE300531505 /* PhotoManifestRepository.swift in Sources */,
 				FC349381269F129F00531505 /* Cursor.swift in Sources */,
 				FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */,
@@ -561,11 +633,18 @@
 				FC3493A926A0D4C400531505 /* CodableURLSession.swift in Sources */,
 				FC3493AD26A18A6C00531505 /* PhotoModel.swift in Sources */,
 				FC3493BF26A1AB6C00531505 /* MediaAssetManifestEntity.swift in Sources */,
+				FC3493F526A4AF4600531505 /* NASAPhotoBuilder.swift in Sources */,
 				FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */,
 				FC3493B726A1AB2300531505 /* LinkEntity.swift in Sources */,
 				FC3493B526A1AB1700531505 /* LinkRelationEntity.swift in Sources */,
+				FC34940426A4B63900531505 /* BodyLabel.swift in Sources */,
+				FC3493ED26A4A42900531505 /* PhotosViewControllerBuilder.swift in Sources */,
+				FC3493F126A4AAE100531505 /* PhotoInfoViewModelBuilder.swift in Sources */,
 				FCAE15F0269D8A6800FA4314 /* UIKitExtensions.swift in Sources */,
+				FC34940026A4B3B000531505 /* StandardTheme.swift in Sources */,
 				FC3493C326A1AB9F00531505 /* Photo.swift in Sources */,
+				FC34940826A4C95800531505 /* PhotoManifestBuilder.swift in Sources */,
+				FC3493FD26A4B21700531505 /* Theme.swift in Sources */,
 				FC34937D269EEF6400531505 /* CollectionRepository.swift in Sources */,
 				FC349368269DA6E700531505 /* AppBuilder.swift in Sources */,
 				FC3493BD26A1AB4C00531505 /* CollectionEntity.swift in Sources */,
@@ -577,6 +656,7 @@
 				FC349366269D9C6900531505 /* URLImageView.swift in Sources */,
 				FC34937A269EEDB200531505 /* PagedCollectionModel.swift in Sources */,
 				FC349372269ECF0700531505 /* TitleLabel.swift in Sources */,
+				FC3493F326A4ABAE00531505 /* PhotosListItemViewModelBuilder.swift in Sources */,
 				FCAE15DD269C5F6700FA4314 /* ListViewModel.swift in Sources */,
 				FC3493B126A19D3900531505 /* FoundationExtensions.swift in Sources */,
 				FC349386269F24AE00531505 /* CollectionResponseEntity.swift in Sources */,

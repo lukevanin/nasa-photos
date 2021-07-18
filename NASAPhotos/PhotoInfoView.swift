@@ -8,6 +8,10 @@
 import UIKit
 
 
+///
+/// Displays a title and subtitle. Typically used to show information about a photo, in the list of photos, and
+/// on the photo details sceen.
+///
 final class PhotoInfoView: UIView {
     
     var title: String? {

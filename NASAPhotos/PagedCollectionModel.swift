@@ -74,7 +74,7 @@ struct AnyPagedCollection<Output> {
 final class PagedCollectionModel<Input, Output>: PagedCollectionProtocol {
     
     typealias Cursor = AnyCursor<[Input]>
-    typealias Transform = (Input) -> Output?
+    typealias Transform = (_ index: Int, _ item: Input) -> Output?
     
     let elements = CurrentValueSubject<[Output], Never>([])
     let errors = PassthroughSubject<Error, Never>()
@@ -117,8 +117,16 @@ final class PagedCollectionModel<Input, Output>: PagedCollectionProtocol {
     // MARK: Internal methods
     
     private func append(_ entities: [Input]) {
-        let newElements = entities.compactMap(transform)
-        elements.value.append(contentsOf: newElements)
+        var elements = self.elements.value
+        let baseIndex = elements.count
+        let newElements = entities
+            .enumerated()
+            .map { (index, element) in
+                (baseIndex + index, element)
+            }
+            .compactMap(transform)
+        elements.append(contentsOf: newElements)
+        self.elements.send(elements)
     }
     
     // MARK: State management

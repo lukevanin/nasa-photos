@@ -35,7 +35,7 @@ final class PagedCollectionModelTests: XCTestCase {
         )
         let subject = PagedCollectionModel<Dummy, Dummy>(
             cursor: cursor.eraseToAnyCursor(),
-            transform: { $0 }
+            transform: { $1 }
         )
         subject.fetch()
         let result = try wait(for: subject.elements)
@@ -54,7 +54,7 @@ final class PagedCollectionModelTests: XCTestCase {
         )
         let subject = PagedCollectionModel<Dummy, Dummy>(
             cursor: cursor.eraseToAnyCursor(),
-            transform: { $0 }
+            transform: { $1 }
         )
         subject.fetch()
         let result = try wait(for: subject.elements)
@@ -73,7 +73,7 @@ final class PagedCollectionModelTests: XCTestCase {
         )
         let subject = PagedCollectionModel<Dummy, Dummy>(
             cursor: cursor.eraseToAnyCursor(),
-            transform: { $0 }
+            transform: { $1 }
         )
         subject.fetch()
         let result = try wait(for: subject.elements)
@@ -95,7 +95,7 @@ final class PagedCollectionModelTests: XCTestCase {
         )
         let subject = PagedCollectionModel<Dummy, Dummy>(
             cursor: cursor.eraseToAnyCursor(),
-            transform: { $0 }
+            transform: { $1 }
         )
         subject.fetch()
         let result = try wait(for: subject.elements)
@@ -123,7 +123,7 @@ final class PagedCollectionModelTests: XCTestCase {
         )
         let subject = PagedCollectionModel<Dummy, Dummy>(
             cursor: cursor.eraseToAnyCursor(),
-            transform: { $0 }
+            transform: { $1 }
         )
         subject.fetch()
         let result = try wait(for: subject.elements)
@@ -160,7 +160,7 @@ final class PagedCollectionModelTests: XCTestCase {
         )
         let subject = PagedCollectionModel<Dummy, Dummy>(
             cursor: cursor.eraseToAnyCursor(),
-            transform: { $0 }
+            transform: { $1 }
         )
         subject.fetch()
         let result0 = try wait(for: subject.elements)
@@ -196,7 +196,7 @@ final class PagedCollectionModelTests: XCTestCase {
         )
         let subject = PagedCollectionModel<Dummy, Dummy>(
             cursor: cursor.eraseToAnyCursor(),
-            transform: { $0 }
+            transform: { $1 }
         )
         subject.fetch()
         let result0 = try wait(for: subject.elements)

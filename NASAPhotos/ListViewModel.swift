@@ -50,7 +50,7 @@ final class AnyListItemCoordinator<Item> {
 final class ListViewModel<Input, Item>: ListViewModelProtocol where Item: Hashable {
     
     typealias Model = AnyPagedCollection<Input>
-    typealias Transform = (Input) -> Item
+    typealias Transform = (_ index: Int, _ element: Input) -> Item
     
     let items: AnyPublisher<[Item], Never>
     
@@ -65,7 +65,9 @@ final class ListViewModel<Input, Item>: ListViewModelProtocol where Item: Hashab
         self.model = model
         self.items = model.elements
             .map { items in
-                items.map(transform)
+                items
+                    .enumerated()
+                    .map(transform)
             }
             .eraseToAnyPublisher()
         

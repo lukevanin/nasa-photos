@@ -10,14 +10,14 @@ import Combine
 
 
 ///
-///
+/// Models the view state for a single photo. Transforms photo model to a photo info view model that can be
+/// displayed in a user interface.
 ///
 final class PhotoViewModel: PhotoViewModelProtocol {
     
-    typealias TransformPhoto = (Photo) -> PhotoInfoViewModel
+    typealias TransformPhoto = (_ photo: Photo, _ imageURL: URL?) -> PhotoInfoViewModel
     
     let photo: AnyPublisher<PhotoInfoViewModel, Never>
-    let previewImageURL: AnyPublisher<URL, Never>
     
     var errorCoordinator: ErrorCoordinatorProtocol?
 
@@ -34,15 +34,15 @@ final class PhotoViewModel: PhotoViewModelProtocol {
         ],
         transformPhoto: @escaping TransformPhoto
     ) {
-        self.model = model
-        self.photo = model.photo
-            .map(transformPhoto)
-            .eraseToAnyPublisher()
-        self.previewImageURL = model.manifest
-            .compactMap { manifest in
+        let manifest = model.manifest
+            .map { manifest in
                 manifest?.firstURL(matching: preferredPreviewImageVariants)
             }
+        self.photo = model.photo
+            .combineLatest(manifest)
+            .map(transformPhoto)
             .eraseToAnyPublisher()
+        self.model = model
         model.error
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in

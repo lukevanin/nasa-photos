@@ -10,7 +10,13 @@ import Combine
 
 
 ///
+/// A view model that provides a collection of items that can be displayed in a list. Used by
+/// `ListViewController` to display a list of items. Concrete implementations should publish a collection
+/// of view models that can be used to configure rows in a table view.
 ///
+/// The view model `reset()` and `fetch()` methods are used to control fetching content in batches.
+///
+/// See `ListViewModel` for an example.
 ///
 protocol ListViewModelProtocol {
     
@@ -20,17 +26,19 @@ protocol ListViewModelProtocol {
     /// Publishes available items.
     ///
     var items: AnyPublisher<[Item], Never> { get }
-
-    ///
-    /// Fetches the next page of items. If no more items are available then this does nothing.
-    ///
-    func reset()
     
     ///
     /// Resets the internal state of the view model so that the next fetch will retrieve the first page of items.
+    /// Items currently in the list are removed.
+    ///
+    func reset()
+
+    ///
+    /// Fetches the next page of items and appends the items to the published list of items. Has no
+    /// side-effects if no more items are available.
     ///
     func fetch()
-    
+
     ///
     /// Selects the item in the liast at the given index.
     ///
@@ -39,32 +47,33 @@ protocol ListViewModelProtocol {
 
 
 ///
+/// Dequeues and configures reusable cells for a table view. Used by the `ListViewController` to
+/// create table view cells for view models. Concrete implementations should register a specific
+/// `UITableViewCell` instance, then dequeue and configure the instance when the cell is requested.
 ///
-///
-protocol CellBuilder {
-    associatedtype Cell: UITableViewCell
+protocol CellBuilderProtocol {
     associatedtype Item
-
-    var reuseIdentifier: String { get }
     func register(in tableView: UITableView)
     func cell(in tableView: UITableView, at indexPath: IndexPath, with item: Item) -> UITableViewCell?
 }
 
-extension CellBuilder {
-    var reuseIdentifier: String {
-        String(describing: Cell.self)
-    }
-    
-    func register(in tableView: UITableView) {
-        tableView.register(Cell.self, forCellReuseIdentifier: reuseIdentifier)
-    }
-}
-
 
 ///
+/// Displays a vertically scrolling list of items provided by a view model conforming to
+/// `ListViewModelProtocol`, and configured by a cell provider conforming to
+/// `CellBuilderProtocol`. Loads the list from the view model when the view controller appears. Loads
+/// additional batches when the list is scrolled so that the last element is displayed. Displays an activity
+/// indicator while the data is loading. Provides pull-down-to-refresh functionality.
 ///
-///
-final class ListViewController<ViewModel, CellProvider>: UIViewController, UITableViewDelegate, UITableViewDataSourcePrefetching where ViewModel: ListViewModelProtocol, CellProvider: CellBuilder, ViewModel.Item == CellProvider.Item {
+final class ListViewController<ViewModel, CellProvider>:
+    UIViewController,
+    UITableViewDelegate,
+    UITableViewDataSourcePrefetching
+where
+    ViewModel: ListViewModelProtocol,
+    CellProvider: CellBuilderProtocol,
+    ViewModel.Item == CellProvider.Item
+{
     
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UITableViewDiffableDataSource<Int, ViewModel.Item>?
@@ -162,12 +171,19 @@ final class ListViewController<ViewModel, CellProvider>: UIViewController, UITab
     }
     
     private func update(with items: [ViewModel.Item]) {
+        // Create a diffable snapshot from the latest items, and apply the
+        // shanges to the view.
         let snapshot = makeSnapshot(for: items)
         dataSource?.apply(
             snapshot,
             animatingDifferences: true,
             completion: nil
         )
+        // Show the loading indicator while the list is empty. This is not
+        // correct behaviour under all circumstances as an empty result set may
+        // be a valid state. It would be more useful to show a placeholder
+        // message state when an empty result set is loaded. This serves current
+        // requirements so it is left as-is.
         if items.count == 0 {
             if loadingIndicatorView.isHidden == true {
                 loadingIndicatorView.startAnimating()
@@ -181,6 +197,8 @@ final class ListViewController<ViewModel, CellProvider>: UIViewController, UITab
     }
     
     private func makeSnapshot(for items: [ViewModel.Item]) -> NSDiffableDataSourceSnapshot<Int, ViewModel.Item> {
+        // Convert the array of view model items to a diffable snapshot that
+        // is used to compute differences between successive batches of items.
         var snapshot = NSDiffableDataSourceSnapshot<Int, ViewModel.Item>()
         snapshot.appendSections([0])
         snapshot.appendItems(items, toSection: 0)
@@ -194,6 +212,8 @@ final class ListViewController<ViewModel, CellProvider>: UIViewController, UITab
     }
 
     private func setupTableView() {
+        // Register the cell on the table view, and set up a diffable data
+        // source to provide cells to the table, using the cell provider.
         cellProvider.register(in: tableView)
         dataSource = UITableViewDiffableDataSource<Int, ViewModel.Item>(
             tableView: tableView,
@@ -205,11 +225,13 @@ final class ListViewController<ViewModel, CellProvider>: UIViewController, UITab
         tableView.estimatedRowHeight = PhotoTableViewCell.estimatedHeight(
             for: UIScreen.main.bounds.width
         )
+        #warning("TODO: Use theme for standard margisn")
         tableView.contentInset = UIEdgeInsets(
             horizontal: 0,
             vertical: 12
         )
         tableView.separatorStyle = .none
+        // Install a refresh control to support pull-down to refresh.
         tableView.refreshControl = UIRefreshControl(
             frame: .zero,
             primaryAction: UIAction() { [weak self] _ in
@@ -220,6 +242,8 @@ final class ListViewController<ViewModel, CellProvider>: UIViewController, UITab
                 self.refreshIfNeeded()
             }
         )
+        // Install the activity indicator on the background of the table view,
+        // so that it can be shown while the list is being loaded.
         tableView.backgroundView = {
             let frame = tableView.bounds
             loadingIndicatorView.center = CGPoint(
@@ -242,6 +266,11 @@ final class ListViewController<ViewModel, CellProvider>: UIViewController, UITab
     // MARK: UITableViewDataSourcePrefetching
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        // Request the next batch of data when the last row of the table is
+        // about to be displayed. UITableViewDataSourcePrefetching is used so
+        // that the view model can start loading before the data is displayed,
+        // which reduces the chances that the user will hit the bottom of the
+        // list before the data is loaded.
         let lastIndex = tableView.numberOfRows(inSection: 0) - 1
         let lastIndexPath = IndexPath(item: lastIndex, section: 0)
         if indexPaths.contains(lastIndexPath) {

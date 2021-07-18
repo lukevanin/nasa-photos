@@ -23,7 +23,7 @@ final class PhotoBuilderTests: XCTestCase {
         let entity = CollectionItem(
             data: [
                 PhotoEntity(
-                    nasaId: expected.id,
+                    nasaId: "foo",
                     dateCreated: expected.dateCreated!,
                     title: expected.title,
                     photographer: expected.photographer,
@@ -42,14 +42,14 @@ final class PhotoBuilderTests: XCTestCase {
                 url: expected.manifestURL!
             )
         )
-        let subject = PhotoBuilder()
-        let result = subject.makePhoto(for: entity)
+        let subject = NASAPhotoBuilder()
+        let result = subject.makePhoto(index: 0, entity: entity)
         XCTAssertEqual(result, expected)
     }
     
     func testMakePhotoShouldReturnPhotoWithoutThumbnailWhenEntityHasNoPreviewLink() {
         let expected = Photo(
-            id: "foo",
+            id: "0",
             title: "bar",
             dateCreated: Date(timeIntervalSince1970: 3600),
             photographer: "baz",
@@ -72,8 +72,8 @@ final class PhotoBuilderTests: XCTestCase {
                 url: expected.manifestURL!
             )
         )
-        let subject = PhotoBuilder()
-        let result = subject.makePhoto(for: entity)
+        let subject = NASAPhotoBuilder()
+        let result = subject.makePhoto(index: 0, entity: entity)
         XCTAssertEqual(result, expected)
     }
     
@@ -92,8 +92,8 @@ final class PhotoBuilderTests: XCTestCase {
                 url: URL(string: "http://example.org/foo/manifest")!
             )
         )
-        let subject = PhotoBuilder()
-        let result = subject.makePhoto(for: entity)
+        let subject = NASAPhotoBuilder()
+        let result = subject.makePhoto(index: 0, entity: entity)
         XCTAssertNil(result)
     }
 

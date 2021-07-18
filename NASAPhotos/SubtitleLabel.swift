@@ -8,6 +8,9 @@
 import UIKit
 
 
+///
+/// Displays static text in the Subtitle style.
+///
 final class SubtitleLabel: UILabel {
     convenience init() {
         self.init(frame: .zero)
@@ -24,8 +27,7 @@ final class SubtitleLabel: UILabel {
     }
     
     private func setup() {
-        let baseFont = UIFont(name: "HelveticaNeue", size: 14)!
-        font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
+        font = Theme.current.subtitleFont()
         adjustsFontForContentSizeCategory = true
         textColor = .secondaryLabel
     }

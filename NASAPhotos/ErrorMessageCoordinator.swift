@@ -9,7 +9,7 @@ import UIKit
 
 
 ///
-///
+/// Defines an abstract inteface for presenting error messages.
 ///
 protocol ErrorCoordinatorProtocol: AnyObject {
     typealias Retry = () -> Void
@@ -19,12 +19,16 @@ protocol ErrorCoordinatorProtocol: AnyObject {
 
 
 ///
-///
+/// Presents an alert with information about an error. Optionally displays a cancel and retry button.
 ///
 final class ErrorAlertCoordinator: ErrorCoordinatorProtocol {
     
     weak var presentingViewController: UIViewController?
     
+    ///
+    /// Presents an alert with the provided error message. Optionally displays a cancel and/or retry button.
+    /// Calls the provided closure when the retry button is tapped.
+    ///
     func showError(message: String, cancellable: Bool, retry: Retry?) {
         let viewController = UIAlertController(
             title: NSLocalizedString("error-alert-title", comment: "Error alert title"),

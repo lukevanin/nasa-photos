@@ -1,22 +1,21 @@
 //
-//  Theme.swift
+//  BodyLabel.swift
 //  NASAPhotos
 //
-//  Created by Luke Van In on 2021/07/14.
+//  Created by Luke Van In on 2021/07/18.
 //
 
 import UIKit
 
 
 ///
-/// Displays static text using the Title style.
+/// Displays static text in the Body text style.
 ///
-final class TitleLabel: UILabel {
-    
+final class BodyLabel: UILabel {
     convenience init() {
         self.init(frame: .zero)
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -28,7 +27,7 @@ final class TitleLabel: UILabel {
     }
     
     private func setup() {
-        font = Theme.current.titleFont()
+        font = Theme.current.bodyFont()
         adjustsFontForContentSizeCategory = true
         textColor = .label
     }

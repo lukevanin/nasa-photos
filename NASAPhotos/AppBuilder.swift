@@ -9,102 +9,93 @@ import UIKit
 import Combine
 
 
+///
+/// Constructs the components used by the application, including the initial view controller as well as any
+/// dependencies used by the application.
+///
 final class AppBuilder {
+    
+    var serviceURL: URL = URL(string: "https://images-api.nasa.gov/search?q=%22%22&&media_type=image")!
+    
+    var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
+    }()
+    
+    var urlSession: URLSession = URLSession.shared
 
-    private var cancellables = Set<AnyCancellable>()
-    
-    private let serviceURL: URL
-    private let photoDescription: PhotoDescriptionFormatter
-    private let errorCoordinator: ErrorCoordinatorProtocol
-    private let photoCoordinator: PhotoCoordinator
-
-    private let getService: CodableGetService
-    private let photosModel: PagedCollectionModel<CollectionItem<PhotoEntity>, Photo>
-    
-    private(set) var rootViewController: UINavigationController!
-    
-    init() {
-        #warning("TODO: Compose query URL in the model")
-        let serviceURL = URL(string: "https://images-api.nasa.gov/search?q=%22%22&&media_type=image")!
-        let decoder: JSONDecoder = {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            decoder.dateDecodingStrategy = .iso8601
-            return decoder
-        }()
+    ///
+    /// Instantiates the initial view controller that is presented to the user when the app is launched.
+    ///
+    func makeViewController() -> UIViewController {
+        
+        // Create the web service.
         let getService = CodableHTTPGetService(
-            session: .shared,
+            session: urlSession,
             decoder: decoder
         )
-        let repository = CollectionRepository<PhotoEntity>(
+        
+        // Create the repository and model for fetching and aggregating photos
+        // from the NASA images API.
+        let nasaPhotosRepository = CollectionRepository<PhotoEntity>(
             url: serviceURL,
             service: getService
         )
-        let photoBuilder = PhotoBuilder()
-        let photosModel = PagedCollectionModel<CollectionItem<PhotoEntity>, Photo>(
-            cursor: repository.eraseToAnyCursor(),
+        let photoBuilder = NASAPhotoBuilder()
+        let nasaPhotosModel = PagedCollectionModel<CollectionItem<PhotoEntity>, Photo>(
+            cursor: nasaPhotosRepository.eraseToAnyCursor(),
             transform: photoBuilder.makePhoto
         )
+        
+        // Create formatters for converting dates and numbers to localized text.
+        let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            #warning("TODO: Use localizable string for date format")
+            formatter.dateFormat = "dd MMM, YYYY"
+            return formatter
+        }()
         let photoDescription = PhotoDescriptionFormatter(
-            dateFormatter: {
-                let formatter = DateFormatter()
-                #warning("TODO: Use localizable string for date format")
-                formatter.dateFormat = "dd MMM, YYYY"
-                return formatter
-            }()
+            dateFormatter: dateFormatter
         )
+        
+        // Create the error coordinator for displaying errors.
         let errorCoordinator = ErrorAlertCoordinator()
-        let photoCoordinator = PhotoCoordinator(
+        
+        // Create the photo coordinator for displaying details for a specific
+        // photo.
+        let photoViewControllerBuilder = NASAPhotoViewControllerBuilder(
             photoDescription: photoDescription,
             getService: getService
         )
-        self.serviceURL = serviceURL
-        self.getService = getService
-        self.photoDescription = photoDescription
-        self.photosModel = photosModel
-        self.errorCoordinator = errorCoordinator
-        self.photoCoordinator = photoCoordinator
-        let viewController = makePhotosViewController()
-        rootViewController = UINavigationController(
-            rootViewController: viewController
+        photoViewControllerBuilder.errorCoordinator = errorCoordinator
+        
+        let photoCoordinator = PhotoCoordinator(
+            builder: photoViewControllerBuilder.makePhotoViewController
+        )
+        
+        // Create the list of photos that are displayed
+        let photosViewControllerBuilder = PhotosViewControllerBuilder(
+            photoDescription: photoDescription,
+            model: nasaPhotosModel.eraseToAnyCollection()
+        )
+        photosViewControllerBuilder.errorCoordinator = errorCoordinator
+        photosViewControllerBuilder.photoCoordinator = photoCoordinator.eraseToAnyListItemCoordinator()
+        
+        let photosViewController = photosViewControllerBuilder.makeViewController()
+        
+        // Create and root navigation controller.
+        let rootViewController = UINavigationController(
+            rootViewController: photosViewController
         )
         rootViewController.navigationBar.prefersLargeTitles = true
+        
+        // Connect dependencies
         errorCoordinator.presentingViewController = rootViewController
-        photoCoordinator.errorCoordinator = errorCoordinator
         photoCoordinator.navigationController = rootViewController
-    }
-    
-    private func makePhotosViewController() -> UIViewController {
-        let photoBuilder = PhotoBuilder()
-        let cellBuilder = PhotoCellBuilder()
-        let repository = CollectionRepository<PhotoEntity>(
-            url: serviceURL,
-            service: getService
-        )
-        let model = PagedCollectionModel(
-            cursor: repository.eraseToAnyCursor(),
-            transform: photoBuilder.makePhoto
-        )
-        let viewModel = ListViewModel(
-            model: model.eraseToAnyCollection(),
-            transform: makePhotoViewModel
-        )
-        let viewController = ListViewController(
-            viewModel: viewModel,
-            cellProvider: cellBuilder
-        )
-        viewController.navigationItem.title = NSLocalizedString("photos-title", comment: "Photos screen title")
-        viewModel.errorCoordinator = errorCoordinator
-        viewModel.itemCoordinator = photoCoordinator.eraseToAnyListItemCoordinator()
-        return viewController
+        
+        return rootViewController
     }
 
-    private func makePhotoViewModel(from photo: Photo) -> PhotosListItemViewModel {
-        PhotosListItemViewModel(
-            id: photo.id,
-            thumbnailImageURL: photo.thumbnailImageURL,
-            title: photo.title ?? "",
-            description: photoDescription.makePhotoDescription(for: photo)
-        )
-    }
 }
