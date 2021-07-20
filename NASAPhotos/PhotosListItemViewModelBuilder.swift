@@ -20,7 +20,7 @@ final class PhotosListItemViewModelBuilder {
         self.photoDescription = photoDescription
     }
     
-    func makePhotoViewModel(at index: Int, with photo: Photo) -> PhotosListItemViewModel {
+    func makePhotoViewModel<P>(at index: Int, with photo: P) -> PhotosListItemViewModel where P: PhotoProtocol {
         PhotosListItemViewModel(
             id: String(index),
             thumbnailImageURL: photo.thumbnailImageURL,

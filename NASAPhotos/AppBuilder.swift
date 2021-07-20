@@ -44,7 +44,7 @@ final class AppBuilder {
             service: getService
         )
         let photoBuilder = NASAPhotoBuilder()
-        let nasaPhotosModel = PagedCollectionModel<CollectionItem<PhotoEntity>, Photo>(
+        let nasaPhotosModel = PagedCollectionModel<CollectionItem<PhotoEntity>, NASAPhoto>(
             cursor: nasaPhotosRepository.eraseToAnyCursor(),
             transform: photoBuilder.makePhoto
         )
