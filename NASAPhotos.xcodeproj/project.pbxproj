@@ -41,7 +41,7 @@
 		FC3493D326A1E85700531505 /* WrappedURLEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D226A1E85700531505 /* WrappedURLEntityTests.swift */; };
 		FC3493D526A1ECC900531505 /* PhotoManifestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D426A1ECC900531505 /* PhotoManifestBuilderTests.swift */; };
 		FC3493D726A1F09700531505 /* PagedCollectionModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D626A1F09700531505 /* PagedCollectionModelTests.swift */; };
-		FC3493DE26A1F11800531505 /* PhotoBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493DD26A1F11800531505 /* PhotoBuilderTests.swift */; };
+		FC3493DE26A1F11800531505 /* NASAPhotoBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493DD26A1F11800531505 /* NASAPhotoBuilderTests.swift */; };
 		FC3493E026A1F5FF00531505 /* MockCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493DF26A1F5FF00531505 /* MockCursor.swift */; };
 		FC3493E426A4747700531505 /* ErrorMessageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493E326A4747700531505 /* ErrorMessageCoordinator.swift */; };
 		FC3493E826A47D7300531505 /* PhotoCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493E726A47D7300531505 /* PhotoCellBuilder.swift */; };
@@ -126,7 +126,7 @@
 		FC3493D226A1E85700531505 /* WrappedURLEntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedURLEntityTests.swift; sourceTree = "<group>"; };
 		FC3493D426A1ECC900531505 /* PhotoManifestBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifestBuilderTests.swift; sourceTree = "<group>"; };
 		FC3493D626A1F09700531505 /* PagedCollectionModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedCollectionModelTests.swift; sourceTree = "<group>"; };
-		FC3493DD26A1F11800531505 /* PhotoBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBuilderTests.swift; sourceTree = "<group>"; };
+		FC3493DD26A1F11800531505 /* NASAPhotoBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoBuilderTests.swift; sourceTree = "<group>"; };
 		FC3493DF26A1F5FF00531505 /* MockCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCursor.swift; sourceTree = "<group>"; };
 		FC3493E326A4747700531505 /* ErrorMessageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageCoordinator.swift; sourceTree = "<group>"; };
 		FC3493E726A47D7300531505 /* PhotoCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellBuilder.swift; sourceTree = "<group>"; };
@@ -242,7 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				FC3493D626A1F09700531505 /* PagedCollectionModelTests.swift */,
-				FC3493DD26A1F11800531505 /* PhotoBuilderTests.swift */,
+				FC3493DD26A1F11800531505 /* NASAPhotoBuilderTests.swift */,
 				FC3493D426A1ECC900531505 /* PhotoManifestBuilderTests.swift */,
 				FC4D4B0626A5A94300DE84F8 /* NASAPhotoDetailsModelTests.swift */,
 			);
@@ -687,7 +687,7 @@
 				FC3493D126A1E72D00531505 /* URLTests.swift in Sources */,
 				FC3493CB26A1B68300531505 /* XCTestCaseExtensions.swift in Sources */,
 				FC3493C926A1B25800531505 /* CollectionRepositoryTests.swift in Sources */,
-				FC3493DE26A1F11800531505 /* PhotoBuilderTests.swift in Sources */,
+				FC3493DE26A1F11800531505 /* NASAPhotoBuilderTests.swift in Sources */,
 				FC3493D526A1ECC900531505 /* PhotoManifestBuilderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
