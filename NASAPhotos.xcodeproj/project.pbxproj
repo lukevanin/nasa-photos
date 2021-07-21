@@ -15,13 +15,13 @@
 		FC349372269ECF0700531505 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349371269ECF0700531505 /* TitleLabel.swift */; };
 		FC349374269ED03C00531505 /* SubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349373269ED03C00531505 /* SubtitleLabel.swift */; };
 		FC349376269ED10300531505 /* PhotoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349375269ED10300531505 /* PhotoInfoView.swift */; };
-		FC34937A269EEDB200531505 /* PagedCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349379269EEDB200531505 /* PagedCollectionModel.swift */; };
+		FC34937A269EEDB200531505 /* PagedCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349379269EEDB200531505 /* PagedCollectionProtocol.swift */; };
 		FC34937D269EEF6400531505 /* CollectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34937C269EEF6400531505 /* CollectionRepository.swift */; };
 		FC349381269F129F00531505 /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349380269F129F00531505 /* Cursor.swift */; };
 		FC349383269F206600531505 /* CodableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349382269F206600531505 /* CodableService.swift */; };
 		FC349386269F24AE00531505 /* CollectionResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC349385269F24AE00531505 /* CollectionResponseEntity.swift */; };
 		FC3493A926A0D4C400531505 /* CodableURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493A826A0D4C400531505 /* CodableURLSession.swift */; };
-		FC3493AD26A18A6C00531505 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493AC26A18A6C00531505 /* PhotoModel.swift */; };
+		FC3493AD26A18A6C00531505 /* NASAPhotoDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493AC26A18A6C00531505 /* NASAPhotoDetailsModel.swift */; };
 		FC3493AF26A18D5700531505 /* PhotoDescriptionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493AE26A18D5700531505 /* PhotoDescriptionFormatter.swift */; };
 		FC3493B126A19D3900531505 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493B026A19D3900531505 /* FoundationExtensions.swift */; };
 		FC3493B326A1AB0900531505 /* URLEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493B226A1AB0900531505 /* URLEntity.swift */; };
@@ -31,32 +31,35 @@
 		FC3493BB26A1AB3F00531505 /* CollectionItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493BA26A1AB3F00531505 /* CollectionItemEntity.swift */; };
 		FC3493BD26A1AB4C00531505 /* CollectionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493BC26A1AB4C00531505 /* CollectionEntity.swift */; };
 		FC3493BF26A1AB6C00531505 /* MediaAssetManifestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493BE26A1AB6C00531505 /* MediaAssetManifestEntity.swift */; };
-		FC3493C126A1AB9300531505 /* PhotoManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C026A1AB9300531505 /* PhotoManifest.swift */; };
-		FC3493C326A1AB9F00531505 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C226A1AB9F00531505 /* Photo.swift */; };
-		FC3493C726A1AFE300531505 /* PhotoManifestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C626A1AFE300531505 /* PhotoManifestRepository.swift */; };
+		FC3493C326A1AB9F00531505 /* PhotoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C226A1AB9F00531505 /* PhotoProtocol.swift */; };
+		FC3493C726A1AFE300531505 /* NASAPhotoManifestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C626A1AFE300531505 /* NASAPhotoManifestRepository.swift */; };
 		FC3493C926A1B25800531505 /* CollectionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493C826A1B25800531505 /* CollectionRepositoryTests.swift */; };
 		FC3493CB26A1B68300531505 /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493CA26A1B68300531505 /* XCTestCaseExtensions.swift */; };
 		FC3493CD26A1B8D500531505 /* MockCodableGetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493CC26A1B8D500531505 /* MockCodableGetService.swift */; };
 		FC3493CF26A1E40600531505 /* PhotoManifestRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493CE26A1E40600531505 /* PhotoManifestRepositoryTests.swift */; };
 		FC3493D126A1E72D00531505 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D026A1E72D00531505 /* URLTests.swift */; };
 		FC3493D326A1E85700531505 /* WrappedURLEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D226A1E85700531505 /* WrappedURLEntityTests.swift */; };
-		FC3493D526A1ECC900531505 /* PhotoManifestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D426A1ECC900531505 /* PhotoManifestBuilderTests.swift */; };
 		FC3493D726A1F09700531505 /* PagedCollectionModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493D626A1F09700531505 /* PagedCollectionModelTests.swift */; };
-		FC3493DE26A1F11800531505 /* PhotoBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493DD26A1F11800531505 /* PhotoBuilderTests.swift */; };
+		FC3493DE26A1F11800531505 /* NASAPhotoBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493DD26A1F11800531505 /* NASAPhotoBuilderTests.swift */; };
 		FC3493E026A1F5FF00531505 /* MockCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493DF26A1F5FF00531505 /* MockCursor.swift */; };
 		FC3493E426A4747700531505 /* ErrorMessageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493E326A4747700531505 /* ErrorMessageCoordinator.swift */; };
 		FC3493E826A47D7300531505 /* PhotoCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493E726A47D7300531505 /* PhotoCellBuilder.swift */; };
 		FC3493EA26A48C4500531505 /* PhotoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493E926A48C4500531505 /* PhotoCoordinator.swift */; };
 		FC3493ED26A4A42900531505 /* PhotosViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493EC26A4A42900531505 /* PhotosViewControllerBuilder.swift */; };
 		FC3493EF26A4A84300531505 /* NASAPhotoViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493EE26A4A84300531505 /* NASAPhotoViewControllerBuilder.swift */; };
-		FC3493F126A4AAE100531505 /* PhotoInfoViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493F026A4AAE100531505 /* PhotoInfoViewModelBuilder.swift */; };
+		FC3493F126A4AAE100531505 /* NASAPhotoInfoViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493F026A4AAE100531505 /* NASAPhotoInfoViewModelBuilder.swift */; };
 		FC3493F326A4ABAE00531505 /* PhotosListItemViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493F226A4ABAE00531505 /* PhotosListItemViewModelBuilder.swift */; };
 		FC3493F526A4AF4600531505 /* NASAPhotoBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493F426A4AF4600531505 /* NASAPhotoBuilder.swift */; };
 		FC3493FD26A4B21700531505 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493FC26A4B21700531505 /* Theme.swift */; };
 		FC34940026A4B3B000531505 /* StandardTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3493FF26A4B3B000531505 /* StandardTheme.swift */; };
 		FC34940226A4B4C300531505 /* CustomTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34940126A4B4C300531505 /* CustomTheme.swift */; };
 		FC34940426A4B63900531505 /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34940326A4B63900531505 /* BodyLabel.swift */; };
-		FC34940826A4C95800531505 /* PhotoManifestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34940726A4C95800531505 /* PhotoManifestBuilder.swift */; };
+		FC4D4B0726A5A94300DE84F8 /* NASAPhotoDetailsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D4B0626A5A94300DE84F8 /* NASAPhotoDetailsModelTests.swift */; };
+		FC4D4B1126A5ADF300DE84F8 /* PhotoDetailsModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D4B1026A5ADF300DE84F8 /* PhotoDetailsModelProtocol.swift */; };
+		FC4D4B1326A5AFFF00DE84F8 /* NASAPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D4B1226A5AFFF00DE84F8 /* NASAPhoto.swift */; };
+		FC4D4B1526A5B25600DE84F8 /* PagedCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D4B1426A5B25600DE84F8 /* PagedCollectionModel.swift */; };
+		FC4D4B1726A5C53F00DE84F8 /* PhotoDetailsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D4B1626A5C53F00DE84F8 /* PhotoDetailsProtocol.swift */; };
+		FC4D4B1926A7014800DE84F8 /* MockAssetManifestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D4B1826A7014800DE84F8 /* MockAssetManifestRepository.swift */; };
 		FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */; };
 		FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */; };
 		FCAE15AD269C28BB00FA4314 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE15AC269C28BB00FA4314 /* ListViewController.swift */; };
@@ -97,13 +100,13 @@
 		FC349371269ECF0700531505 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
 		FC349373269ED03C00531505 /* SubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleLabel.swift; sourceTree = "<group>"; };
 		FC349375269ED10300531505 /* PhotoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoView.swift; sourceTree = "<group>"; };
-		FC349379269EEDB200531505 /* PagedCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedCollectionModel.swift; sourceTree = "<group>"; };
+		FC349379269EEDB200531505 /* PagedCollectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedCollectionProtocol.swift; sourceTree = "<group>"; };
 		FC34937C269EEF6400531505 /* CollectionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRepository.swift; sourceTree = "<group>"; };
 		FC349380269F129F00531505 /* Cursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cursor.swift; sourceTree = "<group>"; };
 		FC349382269F206600531505 /* CodableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableService.swift; sourceTree = "<group>"; };
 		FC349385269F24AE00531505 /* CollectionResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionResponseEntity.swift; sourceTree = "<group>"; };
 		FC3493A826A0D4C400531505 /* CodableURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableURLSession.swift; sourceTree = "<group>"; };
-		FC3493AC26A18A6C00531505 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		FC3493AC26A18A6C00531505 /* NASAPhotoDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoDetailsModel.swift; sourceTree = "<group>"; };
 		FC3493AE26A18D5700531505 /* PhotoDescriptionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDescriptionFormatter.swift; sourceTree = "<group>"; };
 		FC3493B026A19D3900531505 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		FC3493B226A1AB0900531505 /* URLEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntity.swift; sourceTree = "<group>"; };
@@ -113,32 +116,35 @@
 		FC3493BA26A1AB3F00531505 /* CollectionItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItemEntity.swift; sourceTree = "<group>"; };
 		FC3493BC26A1AB4C00531505 /* CollectionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEntity.swift; sourceTree = "<group>"; };
 		FC3493BE26A1AB6C00531505 /* MediaAssetManifestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAssetManifestEntity.swift; sourceTree = "<group>"; };
-		FC3493C026A1AB9300531505 /* PhotoManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifest.swift; sourceTree = "<group>"; };
-		FC3493C226A1AB9F00531505 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		FC3493C626A1AFE300531505 /* PhotoManifestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifestRepository.swift; sourceTree = "<group>"; };
+		FC3493C226A1AB9F00531505 /* PhotoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoProtocol.swift; sourceTree = "<group>"; };
+		FC3493C626A1AFE300531505 /* NASAPhotoManifestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoManifestRepository.swift; sourceTree = "<group>"; };
 		FC3493C826A1B25800531505 /* CollectionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRepositoryTests.swift; sourceTree = "<group>"; };
 		FC3493CA26A1B68300531505 /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
 		FC3493CC26A1B8D500531505 /* MockCodableGetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCodableGetService.swift; sourceTree = "<group>"; };
 		FC3493CE26A1E40600531505 /* PhotoManifestRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifestRepositoryTests.swift; sourceTree = "<group>"; };
 		FC3493D026A1E72D00531505 /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		FC3493D226A1E85700531505 /* WrappedURLEntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedURLEntityTests.swift; sourceTree = "<group>"; };
-		FC3493D426A1ECC900531505 /* PhotoManifestBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifestBuilderTests.swift; sourceTree = "<group>"; };
 		FC3493D626A1F09700531505 /* PagedCollectionModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedCollectionModelTests.swift; sourceTree = "<group>"; };
-		FC3493DD26A1F11800531505 /* PhotoBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBuilderTests.swift; sourceTree = "<group>"; };
+		FC3493DD26A1F11800531505 /* NASAPhotoBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoBuilderTests.swift; sourceTree = "<group>"; };
 		FC3493DF26A1F5FF00531505 /* MockCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCursor.swift; sourceTree = "<group>"; };
 		FC3493E326A4747700531505 /* ErrorMessageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageCoordinator.swift; sourceTree = "<group>"; };
 		FC3493E726A47D7300531505 /* PhotoCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellBuilder.swift; sourceTree = "<group>"; };
 		FC3493E926A48C4500531505 /* PhotoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCoordinator.swift; sourceTree = "<group>"; };
 		FC3493EC26A4A42900531505 /* PhotosViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewControllerBuilder.swift; sourceTree = "<group>"; };
 		FC3493EE26A4A84300531505 /* NASAPhotoViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoViewControllerBuilder.swift; sourceTree = "<group>"; };
-		FC3493F026A4AAE100531505 /* PhotoInfoViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoViewModelBuilder.swift; sourceTree = "<group>"; };
+		FC3493F026A4AAE100531505 /* NASAPhotoInfoViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoInfoViewModelBuilder.swift; sourceTree = "<group>"; };
 		FC3493F226A4ABAE00531505 /* PhotosListItemViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListItemViewModelBuilder.swift; sourceTree = "<group>"; };
 		FC3493F426A4AF4600531505 /* NASAPhotoBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoBuilder.swift; sourceTree = "<group>"; };
 		FC3493FC26A4B21700531505 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		FC3493FF26A4B3B000531505 /* StandardTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTheme.swift; sourceTree = "<group>"; };
 		FC34940126A4B4C300531505 /* CustomTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTheme.swift; sourceTree = "<group>"; };
 		FC34940326A4B63900531505 /* BodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
-		FC34940726A4C95800531505 /* PhotoManifestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManifestBuilder.swift; sourceTree = "<group>"; };
+		FC4D4B0626A5A94300DE84F8 /* NASAPhotoDetailsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoDetailsModelTests.swift; sourceTree = "<group>"; };
+		FC4D4B1026A5ADF300DE84F8 /* PhotoDetailsModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsModelProtocol.swift; sourceTree = "<group>"; };
+		FC4D4B1226A5AFFF00DE84F8 /* NASAPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhoto.swift; sourceTree = "<group>"; };
+		FC4D4B1426A5B25600DE84F8 /* PagedCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedCollectionModel.swift; sourceTree = "<group>"; };
+		FC4D4B1626A5C53F00DE84F8 /* PhotoDetailsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsProtocol.swift; sourceTree = "<group>"; };
+		FC4D4B1826A7014800DE84F8 /* MockAssetManifestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAssetManifestRepository.swift; sourceTree = "<group>"; };
 		FCAE15A5269C28BB00FA4314 /* NASAPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASAPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAE15A8269C28BB00FA4314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCAE15AA269C28BB00FA4314 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,10 +193,13 @@
 		FC349377269EED7F00531505 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FC3493C226A1AB9F00531505 /* Photo.swift */,
-				FC3493C026A1AB9300531505 /* PhotoManifest.swift */,
-				FC349379269EEDB200531505 /* PagedCollectionModel.swift */,
-				FC3493AC26A18A6C00531505 /* PhotoModel.swift */,
+				FC3493C226A1AB9F00531505 /* PhotoProtocol.swift */,
+				FC4D4B1626A5C53F00DE84F8 /* PhotoDetailsProtocol.swift */,
+				FC4D4B1026A5ADF300DE84F8 /* PhotoDetailsModelProtocol.swift */,
+				FC4D4B1226A5AFFF00DE84F8 /* NASAPhoto.swift */,
+				FC349379269EEDB200531505 /* PagedCollectionProtocol.swift */,
+				FC4D4B1426A5B25600DE84F8 /* PagedCollectionModel.swift */,
+				FC3493AC26A18A6C00531505 /* NASAPhotoDetailsModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -209,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				FC34937C269EEF6400531505 /* CollectionRepository.swift */,
-				FC3493C626A1AFE300531505 /* PhotoManifestRepository.swift */,
+				FC3493C626A1AFE300531505 /* NASAPhotoManifestRepository.swift */,
 			);
 			name = Repostitories;
 			sourceTree = "<group>";
@@ -233,8 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				FC3493D626A1F09700531505 /* PagedCollectionModelTests.swift */,
-				FC3493DD26A1F11800531505 /* PhotoBuilderTests.swift */,
-				FC3493D426A1ECC900531505 /* PhotoManifestBuilderTests.swift */,
+				FC3493DD26A1F11800531505 /* NASAPhotoBuilderTests.swift */,
+				FC4D4B0626A5A94300DE84F8 /* NASAPhotoDetailsModelTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -321,7 +330,7 @@
 		FC3493F826A4AF9400531505 /* View Model Builders */ = {
 			isa = PBXGroup;
 			children = (
-				FC3493F026A4AAE100531505 /* PhotoInfoViewModelBuilder.swift */,
+				FC3493F026A4AAE100531505 /* NASAPhotoInfoViewModelBuilder.swift */,
 				FC3493F226A4ABAE00531505 /* PhotosListItemViewModelBuilder.swift */,
 			);
 			name = "View Model Builders";
@@ -331,7 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				FC3493F426A4AF4600531505 /* NASAPhotoBuilder.swift */,
-				FC34940726A4C95800531505 /* PhotoManifestBuilder.swift */,
 			);
 			name = "Model Builders";
 			sourceTree = "<group>";
@@ -456,6 +464,7 @@
 				FCAE15E7269C65F200FA4314 /* MockPhotosViewModel.swift */,
 				FC3493CC26A1B8D500531505 /* MockCodableGetService.swift */,
 				FC3493DF26A1F5FF00531505 /* MockCursor.swift */,
+				FC4D4B1826A7014800DE84F8 /* MockAssetManifestRepository.swift */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -622,28 +631,32 @@
 				FC349376269ED10300531505 /* PhotoInfoView.swift in Sources */,
 				FC3493EF26A4A84300531505 /* NASAPhotoViewControllerBuilder.swift in Sources */,
 				FC3493AF26A18D5700531505 /* PhotoDescriptionFormatter.swift in Sources */,
+				FC4D4B1926A7014800DE84F8 /* MockAssetManifestRepository.swift in Sources */,
 				FCAE15E8269C65F200FA4314 /* MockPhotosViewModel.swift in Sources */,
 				FCAE15AD269C28BB00FA4314 /* ListViewController.swift in Sources */,
+				FC4D4B1326A5AFFF00DE84F8 /* NASAPhoto.swift in Sources */,
 				FC34940226A4B4C300531505 /* CustomTheme.swift in Sources */,
-				FC3493C726A1AFE300531505 /* PhotoManifestRepository.swift in Sources */,
+				FC3493C726A1AFE300531505 /* NASAPhotoManifestRepository.swift in Sources */,
 				FC349381269F129F00531505 /* Cursor.swift in Sources */,
 				FCAE15A9269C28BB00FA4314 /* AppDelegate.swift in Sources */,
 				FC3493E026A1F5FF00531505 /* MockCursor.swift in Sources */,
 				FC3493E426A4747700531505 /* ErrorMessageCoordinator.swift in Sources */,
 				FC3493A926A0D4C400531505 /* CodableURLSession.swift in Sources */,
-				FC3493AD26A18A6C00531505 /* PhotoModel.swift in Sources */,
+				FC3493AD26A18A6C00531505 /* NASAPhotoDetailsModel.swift in Sources */,
 				FC3493BF26A1AB6C00531505 /* MediaAssetManifestEntity.swift in Sources */,
+				FC4D4B1126A5ADF300DE84F8 /* PhotoDetailsModelProtocol.swift in Sources */,
+				FC4D4B1726A5C53F00DE84F8 /* PhotoDetailsProtocol.swift in Sources */,
 				FC3493F526A4AF4600531505 /* NASAPhotoBuilder.swift in Sources */,
 				FCAE15AB269C28BB00FA4314 /* SceneDelegate.swift in Sources */,
 				FC3493B726A1AB2300531505 /* LinkEntity.swift in Sources */,
 				FC3493B526A1AB1700531505 /* LinkRelationEntity.swift in Sources */,
 				FC34940426A4B63900531505 /* BodyLabel.swift in Sources */,
 				FC3493ED26A4A42900531505 /* PhotosViewControllerBuilder.swift in Sources */,
-				FC3493F126A4AAE100531505 /* PhotoInfoViewModelBuilder.swift in Sources */,
+				FC3493F126A4AAE100531505 /* NASAPhotoInfoViewModelBuilder.swift in Sources */,
 				FCAE15F0269D8A6800FA4314 /* UIKitExtensions.swift in Sources */,
 				FC34940026A4B3B000531505 /* StandardTheme.swift in Sources */,
-				FC3493C326A1AB9F00531505 /* Photo.swift in Sources */,
-				FC34940826A4C95800531505 /* PhotoManifestBuilder.swift in Sources */,
+				FC4D4B1526A5B25600DE84F8 /* PagedCollectionModel.swift in Sources */,
+				FC3493C326A1AB9F00531505 /* PhotoProtocol.swift in Sources */,
 				FC3493FD26A4B21700531505 /* Theme.swift in Sources */,
 				FC34937D269EEF6400531505 /* CollectionRepository.swift in Sources */,
 				FC349368269DA6E700531505 /* AppBuilder.swift in Sources */,
@@ -651,10 +664,9 @@
 				FC3493BB26A1AB3F00531505 /* CollectionItemEntity.swift in Sources */,
 				FC3493B926A1AB3000531505 /* PhotoEntity.swift in Sources */,
 				FC349374269ED03C00531505 /* SubtitleLabel.swift in Sources */,
-				FC3493C126A1AB9300531505 /* PhotoManifest.swift in Sources */,
 				FC349383269F206600531505 /* CodableService.swift in Sources */,
 				FC349366269D9C6900531505 /* URLImageView.swift in Sources */,
-				FC34937A269EEDB200531505 /* PagedCollectionModel.swift in Sources */,
+				FC34937A269EEDB200531505 /* PagedCollectionProtocol.swift in Sources */,
 				FC349372269ECF0700531505 /* TitleLabel.swift in Sources */,
 				FC3493F326A4ABAE00531505 /* PhotosListItemViewModelBuilder.swift in Sources */,
 				FCAE15DD269C5F6700FA4314 /* ListViewModel.swift in Sources */,
@@ -670,13 +682,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC3493D326A1E85700531505 /* WrappedURLEntityTests.swift in Sources */,
+				FC4D4B0726A5A94300DE84F8 /* NASAPhotoDetailsModelTests.swift in Sources */,
 				FC3493CF26A1E40600531505 /* PhotoManifestRepositoryTests.swift in Sources */,
 				FC3493D726A1F09700531505 /* PagedCollectionModelTests.swift in Sources */,
 				FC3493D126A1E72D00531505 /* URLTests.swift in Sources */,
 				FC3493CB26A1B68300531505 /* XCTestCaseExtensions.swift in Sources */,
 				FC3493C926A1B25800531505 /* CollectionRepositoryTests.swift in Sources */,
-				FC3493DE26A1F11800531505 /* PhotoBuilderTests.swift in Sources */,
-				FC3493D526A1ECC900531505 /* PhotoManifestBuilderTests.swift in Sources */,
+				FC3493DE26A1F11800531505 /* NASAPhotoBuilderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

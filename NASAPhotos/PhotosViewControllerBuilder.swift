@@ -11,7 +11,7 @@ import UIKit
 ///
 /// Creates a view controller that displays a list of photos using the given model.
 ///
-final class PhotosViewControllerBuilder {
+final class PhotosViewControllerBuilder<Photo> where Photo: PhotoProtocol {
 
     var errorCoordinator: ErrorCoordinatorProtocol?
     var photoCoordinator: AnyListItemCoordinator<Photo>?

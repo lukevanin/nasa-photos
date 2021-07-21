@@ -7,54 +7,31 @@
 
 import UIKit
 
-final class PhotoCoordinator: ListItemCoordinator {
+
+///
+/// Presents a view controller with information about the given photo.
+///
+final class PhotoCoordinator<Photo>: ListItemCoordinator {
+    
+    #warning("TODO: Refactor into generic detail view coordinator")
     
     weak var navigationController: UINavigationController?
-    weak var errorCoordinator: ErrorCoordinatorProtocol?
 
-    private let photoDescription: PhotoDescriptionProtocol
-    private let getService: CodableGetService
-
-    init(
-        photoDescription: PhotoDescriptionProtocol,
-        getService: CodableGetService
-    ) {
-        self.photoDescription = photoDescription
-        self.getService = getService
+    typealias Builder = (_ photo: Photo) -> UIViewController?
+    
+    private let builder: Builder
+    
+    init(builder: @escaping Builder) {
+        self.builder = builder
     }
     
     func showItem(item: Photo) {
-        let viewController = makePhotoViewController(with: item)
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-    private func makePhotoViewController(
-        with photo: Photo
-    ) -> PhotoViewController {
-        let manifestRepository = PhotoManifestRepository(
-            service: getService
-        )
-        let model = PhotoDetailsModel(
-            photo: photo,
-            manifestRepository: manifestRepository
-        )
-        let viewModel = PhotoViewModel(
-            model: model,
-            transformPhoto: makePhotoInfoViewModel
-        )
-        let viewController = PhotoViewController(
-            viewModel: viewModel
-        )
-        viewModel.errorCoordinator = errorCoordinator
-        return viewController
-    }
-    
-    func makePhotoInfoViewModel(with photo: Photo) -> PhotoInfoViewModel {
-        PhotoInfoViewModel(
-            id: photo.id,
-            title: photo.title ?? "",
-            description: photoDescription.makePhotoDescription(for: photo),
-            details: photo.details ?? ""
-        )
+        guard let navigationController = navigationController else {
+            return
+        }
+        guard let viewController = builder(item) else {
+            return
+        }
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

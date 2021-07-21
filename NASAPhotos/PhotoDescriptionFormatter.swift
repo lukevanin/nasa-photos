@@ -20,7 +20,7 @@ extension PhotoDescriptionProtocol {
     ///
     /// Convenience method that provides a formatted description from a photo instance.
     ///
-    func makePhotoDescription(for photo: Photo) -> String {
+    func makePhotoDescription<Photo>(for photo: Photo) -> String where Photo: PhotoProtocol {
         makePhotoDescription(
             photographer: photo.photographer,
             date: photo.dateCreated

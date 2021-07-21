@@ -1,8 +1,8 @@
 //
-//  PhotosModel.swift
+//  PagedCollectionModel.swift
 //  NASAPhotos
 //
-//  Created by Luke Van In on 2021/07/14.
+//  Created by Luke Van In on 2021/07/19.
 //
 
 import Foundation
@@ -10,66 +10,9 @@ import Combine
 
 
 ///
-///
-///
-protocol PagedCollectionProtocol {
-    
-    associatedtype Output
-    
-    var elements: CurrentValueSubject<[Output], Never> { get }
-    var errors: PassthroughSubject<Error, Never> { get }
-
-    func fetch()
-    func cancel()
-    func reset()
-}
-
-extension PagedCollectionProtocol {
-    func eraseToAnyCollection() -> AnyPagedCollection<Output> {
-        AnyPagedCollection(self)
-    }
-}
-
-
-///
-///
-///
-struct AnyPagedCollection<Output> {
-    
-    let elements: CurrentValueSubject<[Output], Never>
-    let errors: PassthroughSubject<Error, Never>
-    
-    private var internalFetch: () -> Void
-    private var internalCancel: () -> Void
-    private var internalReset: () -> Void
-
-    init<C>(_ collection: C) where C: PagedCollectionProtocol, C.Output == Output {
-        self.elements = collection.elements
-        self.errors = collection.errors
-        self.internalFetch = collection.fetch
-        self.internalCancel = collection.cancel
-        self.internalReset = collection.reset
-    }
-    
-    func fetch() {
-        internalFetch()
-    }
-    
-    func cancel() {
-        internalCancel()
-    }
-    
-    func reset() {
-        internalReset()
-    }
-}
-
-
-///
-/// Models a general purpose paginated collection of items.
-/// Uses a cursor to return batches of items from a collection.
-/// Transforms input items into output items.
-/// Aggregates (combines together) separates batches of items into a single collection containing all of the items.
+/// Models a general purpose paginated collection of items. Uses a cursor to return batches of items from a
+/// collection. Transforms input items into output items. Aggregates (combines together) separates batches of
+/// items into a single collection containing all of the items.
 ///
 final class PagedCollectionModel<Input, Output>: PagedCollectionProtocol {
     

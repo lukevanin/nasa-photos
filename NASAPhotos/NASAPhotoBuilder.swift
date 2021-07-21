@@ -13,19 +13,20 @@ import Foundation
 ///
 final class NASAPhotoBuilder {
     
-    func makePhoto(index: Int, entity: CollectionItem<PhotoEntity>) -> Photo? {
+    func makePhoto(index: Int, entity: CollectionItem<PhotoEntity>) -> NASAPhoto? {
         guard let item = entity.data.first else {
             return nil
         }
         let thumbnailLink = entity.links?.first { $0.rel == .preview }
         let thumbnailImageURL = thumbnailLink?.href
-        return Photo(
+        return NASAPhoto(
             id: item.id,
             title: item.title,
             dateCreated: item.dateCreated,
             photographer: item.photographer,
             details: item.description,
             thumbnailImageURL: thumbnailImageURL?.url,
+            previewImageURL: nil,
             manifestURL: entity.href.url
         )
     }

@@ -8,10 +8,10 @@
 import XCTest
 @testable import NASAPhotos
 
-final class PhotoBuilderTests: XCTestCase {
+final class NASAPhotoBuilderTests: XCTestCase {
 
     func testMakePhotoShouldReturnPhotoWhenEntityHasData() {
-        let expected = Photo(
+        let expected = NASAPhoto(
             id: "foo",
             title: "bar",
             dateCreated: Date(timeIntervalSince1970: 3600),
@@ -48,7 +48,7 @@ final class PhotoBuilderTests: XCTestCase {
     }
     
     func testMakePhotoShouldReturnPhotoWithoutThumbnailWhenEntityHasNoPreviewLink() {
-        let expected = Photo(
+        let expected = NASAPhoto(
             id: "0",
             title: "bar",
             dateCreated: Date(timeIntervalSince1970: 3600),
@@ -76,7 +76,7 @@ final class PhotoBuilderTests: XCTestCase {
         let result = subject.makePhoto(index: 0, entity: entity)
         XCTAssertEqual(result, expected)
     }
-    
+
     func testMakePhotoShouldReturnNilWhenEntityHasNoData() {
         let entity = CollectionItem<PhotoEntity>(
             data: [],
@@ -96,5 +96,4 @@ final class PhotoBuilderTests: XCTestCase {
         let result = subject.makePhoto(index: 0, entity: entity)
         XCTAssertNil(result)
     }
-
 }

@@ -13,33 +13,24 @@ import Combine
 /// Models the view state for a single photo. Transforms photo model to a photo info view model that can be
 /// displayed in a user interface.
 ///
-final class PhotoViewModel: PhotoViewModelProtocol {
+final class PhotoViewModel<Model>: PhotoViewModelProtocol where Model: PhotoDetailsModelProtocol {
     
-    typealias TransformPhoto = (_ photo: Photo, _ imageURL: URL?) -> PhotoInfoViewModel
+    #warning("TODO: Erase model type and use AnyPhotoDetailsModel instead")
+    
+    typealias TransformPhoto = (_ photo: Model.Photo) -> PhotoInfoViewModel
     
     let photo: AnyPublisher<PhotoInfoViewModel, Never>
     
     var errorCoordinator: ErrorCoordinatorProtocol?
 
     private var cancellables = Set<AnyCancellable>()
-    private let model: PhotoDetailsModel
+    private let model: Model
     
     init(
-        model: PhotoDetailsModel,
-        preferredPreviewImageVariants: [PhotoManifest.Variant] = [
-            .small,
-            .medium,
-            .original,
-            .thumbnail,
-        ],
+        model: Model,
         transformPhoto: @escaping TransformPhoto
     ) {
-        let manifest = model.manifest
-            .map { manifest in
-                manifest?.firstURL(matching: preferredPreviewImageVariants)
-            }
         self.photo = model.photo
-            .combineLatest(manifest)
             .map(transformPhoto)
             .eraseToAnyPublisher()
         self.model = model
