@@ -28,7 +28,7 @@ final class NASAPhotoDetailsModel: PhotoDetailsModelProtocol {
     let error = PassthroughSubject<Error, Never>()
 
     private var manifestCancellable: AnyCancellable?
-    private let manifestRepository: NASAPhotoManifestRepository
+    private let manifestRepository: AssetManifestRepositoryProtocol
     
     private let previewImageVariants: [Variant]
     private let originalPhoto: Photo
@@ -41,7 +41,7 @@ final class NASAPhotoDetailsModel: PhotoDetailsModelProtocol {
             .original,
             .thumbnail,
         ],
-        manifestRepository: NASAPhotoManifestRepository
+        manifestRepository: AssetManifestRepositoryProtocol
     ) {
         self.originalPhoto = photo
         self.photo = CurrentValueSubject(photo)
